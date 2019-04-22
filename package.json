@@ -36,11 +36,14 @@
     "url": "https://github.com/momocow/node-cq-websocket/issues"
   },
   "homepage": "https://github.com/momocow/node-cq-websocket#readme",
-  "dependencies": {},
+  "dependencies": {
+    "websocket": "^1.0.28"
+  },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
     "@semantic-release/release-notes-generator": "^7.1.4",
+    "@types/websocket": "0.0.40",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "chalk": "^2.4.2",
