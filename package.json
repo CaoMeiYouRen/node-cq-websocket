@@ -15,6 +15,7 @@
     "webpack": "webpack",
     "release": "semantic-release",
     "test": "nyc ava test/**/*.test.js",
+    "test:dev": "ava test/**/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "config": {
