@@ -11,7 +11,8 @@
     "typeRoots": [
       "node_modules/@types",
       "types"
-    ]
+    ],
+    "inlineSourceMap": true
   },
   "include": [
     "src/**/*.ts"
