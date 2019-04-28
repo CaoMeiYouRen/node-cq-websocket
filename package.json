@@ -9,14 +9,15 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "lint": "eslint --ext .ts src",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
     "build": "tsc",
     "clean": "rimraf src/**/*.d.ts src/**/*.js .dist",
     "webpack": "webpack",
     "release": "semantic-release",
     "test": "env-cmd ./test.env nyc ava test/**/*.test.js",
     "test:dev": "ava test/**/*.test.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "docs": "typedoc"
   },
   "config": {
     "commitizen": {
@@ -39,27 +40,17 @@
     "url": "https://github.com/momocow/node-cq-websocket/issues"
   },
   "homepage": "https://github.com/momocow/node-cq-websocket#readme",
-  "dependencies": {
-    "websocket": "^1.0.28"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
     "@semantic-release/release-notes-generator": "^7.1.4",
     "@types/websocket": "0.0.40",
-    "@typescript-eslint/eslint-plugin": "^1.6.0",
-    "@typescript-eslint/parser": "^1.6.0",
     "ava": "^1.4.1",
     "chalk": "^2.4.2",
     "commitizen": "^3.0.7",
     "coveralls": "^3.0.3",
     "env-cmd": "^8.0.2",
-    "eslint": "^5.16.0",
-    "eslint-config-standard-with-typescript": "^7.0.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
     "fs-extra": "^7.0.1",
     "is-ci": "^2.0.0",
     "kaomojify-webpack-plugin": "^0.1.1",
@@ -68,8 +59,15 @@
     "semantic-release": "^15.13.12",
     "source-map-support": "^0.5.12",
     "ts-node": "^8.1.0",
+    "tslint": "^5.16.0",
+    "tslint-config-standard": "^8.0.1",
+    "typedoc": "github:jonchardy/typedoc#category-fixes",
     "typescript": "^3.4.3",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0"
+  },
+  "optionalDependencies": {
+    "websocket": "^1.0.28",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.10.0"
   }
 }
