@@ -4,5 +4,6 @@
   ],
   "extension": [
     ".ts"
-  ]
+  ],
+  "all": true
 }

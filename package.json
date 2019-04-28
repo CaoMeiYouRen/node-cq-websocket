@@ -14,7 +14,7 @@
     "clean": "rimraf src/**/*.d.ts src/**/*.js .dist",
     "webpack": "webpack",
     "release": "semantic-release",
-    "test": "nyc ava test/**/*.test.js",
+    "test": "env-cmd ./test.env nyc ava test/**/*.test.js",
     "test:dev": "ava test/**/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -53,6 +53,7 @@
     "chalk": "^2.4.2",
     "commitizen": "^3.0.7",
     "coveralls": "^3.0.3",
+    "env-cmd": "^8.0.2",
     "eslint": "^5.16.0",
     "eslint-config-standard-with-typescript": "^7.0.0",
     "eslint-plugin-import": "^2.17.2",
