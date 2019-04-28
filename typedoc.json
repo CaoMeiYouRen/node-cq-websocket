@@ -1,0 +1,12 @@
+{
+  "mode": "file",
+  "out": "./docs/api",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeNotExported": true,
+  "categorizeByGroup": true,
+  "defaultCategory": "Core",
+  "categoryOrder": [
+    "Core"
+  ]
+}
