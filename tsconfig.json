@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",
     "declaration": true,
     "target": "esnext",
     "module": "commonjs",
