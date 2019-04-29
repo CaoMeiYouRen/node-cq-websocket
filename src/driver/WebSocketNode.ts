@@ -1,21 +1,14 @@
 import { EventEmitter } from 'events'
 import { client as WebSocketClient, IClientConfig } from 'websocket'
-import { WebSocketCommon } from './WebSocketCommon'
-import { APIPacket } from '../packet/APIPacket'
 
-/**
- * @category WebSocket Driver
- */
-export class WebSocketNode extends EventEmitter implements WebSocketCommon {
+export interface WebSocketNodeOptions
+  extends IClientConfig {
 
-  open (): void {
-    throw new Error('Method not implemented.')
-  }
+}
 
-  close (code?: number | undefined, reason?: string | undefined): void {
-    throw new Error('Method not implemented.')
-  }
-
+export class WebSocketNode extends EventEmitter implements
+  Driver.Listener,
+  Driver.Emitter {
   private _client: WebSocketClient
   constructor (wsConfig?: IClientConfig) {
     super()
@@ -25,7 +18,15 @@ export class WebSocketNode extends EventEmitter implements WebSocketCommon {
     })
   }
 
-  send (pkt: APIPacket): void {
+  open (): void {
+    // this._client.connect(url)
+  }
+
+  close (code?: number | undefined, reason?: string | undefined): void {
+    throw new Error('Method not implemented.')
+  }
+
+  send (pkt: Packet.APIPacket): void {
     throw new Error('Method not implemented.')
   }
 }

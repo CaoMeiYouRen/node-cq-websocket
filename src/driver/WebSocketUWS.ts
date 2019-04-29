@@ -1,11 +1,8 @@
 import { EventEmitter } from 'events'
-import { WebSocketCommon } from './WebSocketCommon'
-import { APIPacket } from '../packet/APIPacket'
 
-/**
- * @category WebSocket Driver
- */
-export class WebSocketUWS extends EventEmitter implements WebSocketCommon {
+export class WebSocketUWS extends EventEmitter implements
+  Driver.Listener,
+  Driver.Emitter {
   open (): void {
     throw new Error('Method not implemented.')
   }
@@ -14,7 +11,7 @@ export class WebSocketUWS extends EventEmitter implements WebSocketCommon {
     throw new Error('Method not implemented.')
   }
 
-  send (pkt: APIPacket): void {
+  send (pkt: Packet.APIPacket): void {
     throw new Error('Method not implemented.')
   }
 }
