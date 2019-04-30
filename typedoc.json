@@ -1,12 +1,8 @@
 {
-  "mode": "file",
+  "mode": "modules",
   "out": "./docs/api",
+  "excludeExternals": true,
   "excludePrivate": true,
   "excludeProtected": true,
-  "excludeNotExported": true,
-  "categorizeByGroup": true,
-  "defaultCategory": "Core",
-  "categoryOrder": [
-    "Core"
-  ]
+  "excludeNotExported": true
 }
