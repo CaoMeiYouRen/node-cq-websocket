@@ -1,14 +1,20 @@
+/**
+ * @module Driver
+ */
+
 import { EventEmitter } from 'events'
 import { client as WebSocketClient, IClientConfig } from 'websocket'
+
+import { Emitter } from './Emitter'
+import { Listener } from './Listener'
+import { APIPacket } from '../packet/APIPacket'
 
 export interface WebSocketNodeOptions
   extends IClientConfig {
 
 }
 
-export class WebSocketNode extends EventEmitter implements
-  Driver.Listener,
-  Driver.Emitter {
+export class WebSocketNode extends EventEmitter implements Listener, Emitter {
   private _client: WebSocketClient
   constructor (wsConfig?: IClientConfig) {
     super()
@@ -26,7 +32,7 @@ export class WebSocketNode extends EventEmitter implements
     throw new Error('Method not implemented.')
   }
 
-  send (pkt: Packet.APIPacket): void {
+  send (pkt: APIPacket): void {
     throw new Error('Method not implemented.')
   }
 }
