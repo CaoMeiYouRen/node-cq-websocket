@@ -1,14 +1,14 @@
 import { EventEmitter } from 'events'
-import { EventPacket } from './packet/EventPacket'
+import { PacketEvent } from './packet/event/PacketEvent'
 
-export type Filter = (pkt: EventPacket) => boolean
+export type Filter = (pkt: PacketEvent) => boolean
 
 export class Channel extends EventEmitter {
   public constructor (private _filter: Filter) {
     super()
   }
 
-  public handle (pkt: EventPacket): this {
+  public handle (pkt: PacketEvent): this {
     if (this._filter(pkt)) {
       this.emit('message')
     }
