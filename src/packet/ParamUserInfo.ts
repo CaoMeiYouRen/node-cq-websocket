@@ -1,6 +1,8 @@
 /**
  * @module packet
  */
+/**
+ */
 
 export interface ParamUserInfo {
   user_id: number

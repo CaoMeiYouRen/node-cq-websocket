@@ -1,8 +1,8 @@
-import { ParamUserInfo } from './ParamUserInfo'
-
 /**
  * @module packet
  */
+
+import { ParamUserInfo } from './ParamUserInfo'
 
 export interface ParamGroupMemberInfo extends ParamUserInfo {
   group_id: number

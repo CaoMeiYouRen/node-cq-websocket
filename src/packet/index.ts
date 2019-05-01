@@ -1,0 +1,4 @@
+/**
+ * @module packet
+ * @preferred
+ */

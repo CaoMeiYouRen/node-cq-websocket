@@ -1,0 +1,4 @@
+/**
+ * @module packet.event
+ * @preferred
+ */
