@@ -1,8 +1,8 @@
 /**
- * @module Driver
+ * @module driver
  */
 
-import { EventPacket } from '../packet/EventPacket'
+import { EventPacket } from '../packet/event/PacketEvent'
 
 export interface Listener {
   on (event: 'open', listener: () => void): this
@@ -19,9 +19,4 @@ export interface Listener {
   off (event: 'close', listener?: (code: number, reason: string) => void): this
   off (event: 'message', listener?: (pkt: EventPacket) => void): this
   off (event: 'error', listener?: (err: Error) => void): this
-
-  emit (event: 'open'): boolean
-  emit (event: 'close', code?: number, reason?: string): boolean
-  emit (event: 'message', pkt: EventPacket): boolean
-  emit (event: 'error', err: Error): boolean
 }
