@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Emitter | cq-websocket</title>
+	<title>APIEmitter | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/driver.html">Driver</a>
+					<a href="../modules/driver.html">driver</a>
 				</li>
 				<li>
-					<a href="driver.emitter.html">Emitter</a>
+					<a href="driver.apiemitter.html">APIEmitter</a>
 				</li>
 			</ul>
-			<h1>Interface Emitter</h1>
+			<h1>Interface APIEmitter</h1>
 		</div>
 	</div>
 </header>
@@ -69,17 +69,8 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Emitter</span>
+						<span class="target">APIEmitter</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implemented by</h3>
-				<ul class="tsd-hierarchy">
-					<li><a href="../classes/driver.websocketbrowser.html" class="tsd-signature-type">WebSocketBrowser</a></li>
-					<li><a href="../classes/driver.websocketnode.html" class="tsd-signature-type">WebSocketNode</a></li>
-					<li><a href="../classes/driver.websocketnodereverse.html" class="tsd-signature-type">WebSocketNodeReverse</a></li>
-					<li><a href="../classes/driver.websocketuws.html" class="tsd-signature-type">WebSocketUWS</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -89,7 +80,7 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="driver.emitter.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="driver.apiemitter.html#send" class="tsd-kind-icon">send</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,22 +92,22 @@
 					<a name="send" class="tsd-anchor"></a>
 					<h3>send</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>pkt<span class="tsd-signature-symbol">: </span><a href="../modules/packet.html#apipacket" class="tsd-signature-type">APIPacket</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<span class="tsd-signature-symbol">(</span>pkt<span class="tsd-signature-symbol">: </span><a href="../modules/packet.html#packetrequest" class="tsd-signature-type">PacketRequest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/packet.html#packetresponse" class="tsd-signature-type">PacketResponse</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/08398d3/src/driver/Emitter.ts#L8">driver/Emitter.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/driver/APIEmitter.ts#L9">driver/APIEmitter.ts:9</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>pkt: <a href="../modules/packet.html#apipacket" class="tsd-signature-type">APIPacket</a></h5>
+									<h5>pkt: <a href="../modules/packet.html#packetrequest" class="tsd-signature-type">PacketRequest</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/packet.html#packetresponse" class="tsd-signature-type">PacketResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -135,50 +126,41 @@
 						<a href="../modules/_index_.html">"index"</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/driver.html">Driver</a>
+						<a href="../modules/driver.html">driver</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/packet.html">Packet</a>
+						<a href="../modules/packet.html">packet</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/packet__api.html">packet._<wbr>api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/packet_api.html">packet.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/packet_event.html">packet.event</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/driver.websocketbrowser.html" class="tsd-kind-icon">Web<wbr>Socket<wbr>Browser</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/driver.websocketnode.html" class="tsd-kind-icon">Web<wbr>Socket<wbr>Node</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/driver.websocketnodereverse.html" class="tsd-kind-icon">Web<wbr>Socket<wbr>Node<wbr>Reverse</a>
-					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-external-module">
-						<a href="../classes/driver.websocketuws.html" class="tsd-kind-icon">Web<wbr>SocketUWS</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.emitter.html" class="tsd-kind-icon">Emitter</a>
+						<a href="driver.apiemitter.html" class="tsd-kind-icon">APIEmitter</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="driver.emitter.html#send" class="tsd-kind-icon">send</a>
+								<a href="driver.apiemitter.html#send" class="tsd-kind-icon">send</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.listener.html" class="tsd-kind-icon">Listener</a>
+						<a href="driver.connector.html" class="tsd-kind-icon">Connector</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.websocketeventlistenermap.html" class="tsd-kind-icon">Web<wbr>Socket<wbr>Event<wbr>Listener<wbr>Map</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.websocketnodeoptions.html" class="tsd-kind-icon">Web<wbr>Socket<wbr>Node<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/driver.html#websocketevent" class="tsd-kind-icon">Web<wbr>Socket<wbr>Event</a>
+						<a href="driver.eventlistener.html" class="tsd-kind-icon">Event<wbr>Listener</a>
 					</li>
 				</ul>
 			</nav>

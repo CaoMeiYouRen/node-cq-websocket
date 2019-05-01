@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CQHTTPMessage | cq-websocket</title>
+	<title>ResGetVIPInfo | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/packet.html">packet</a>
+					<a href="../modules/packet__api.html">packet._api</a>
 				</li>
 				<li>
-					<a href="packet.cqhttpmessage.html">CQHTTPMessage</a>
+					<a href="packet__api.resgetvipinfo.html">ResGetVIPInfo</a>
 				</li>
 			</ul>
-			<h1>Interface CQHTTPMessage</h1>
+			<h1>Interface ResGetVIPInfo</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>see</dt>
-						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/Message?id=消息段（广义-cq-码）" class="external">CQHTTP#消息段</a></p>
+						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/API?id=响应数据38" class="external">CQHTTP#获取会员信息-响应数据</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -78,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CQHTTPMessage</span>
+						<span class="target">ResGetVIPInfo</span>
 					</li>
 				</ul>
 			</section>
@@ -89,8 +89,13 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.cqhttpmessage.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.cqhttpmessage.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#level" class="tsd-kind-icon">level</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#level_speed" class="tsd-kind-icon">level_<wbr>speed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#nickname" class="tsd-kind-icon">nickname</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#user_id" class="tsd-kind-icon">user_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#vip_growth_speed" class="tsd-kind-icon">vip_<wbr>growth_<wbr>speed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#vip_growth_total" class="tsd-kind-icon">vip_<wbr>growth_<wbr>total</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetvipinfo.html#vip_level" class="tsd-kind-icon">vip_<wbr>level</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,22 +104,72 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="level" class="tsd-anchor"></a>
+					<h3>level</h3>
+					<div class="tsd-signature tsd-kind-icon">level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/CQHTTPMessage.ts#L10">packet/CQHTTPMessage.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L11">packet/_api/ResGetVIPInfo.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="level_speed" class="tsd-anchor"></a>
+					<h3>level_<wbr>speed</h3>
+					<div class="tsd-signature tsd-kind-icon">level_<wbr>speed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/CQHTTPMessage.ts#L9">packet/CQHTTPMessage.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L12">packet/_api/ResGetVIPInfo.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="nickname" class="tsd-anchor"></a>
+					<h3>nickname</h3>
+					<div class="tsd-signature tsd-kind-icon">nickname<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L10">packet/_api/ResGetVIPInfo.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="user_id" class="tsd-anchor"></a>
+					<h3>user_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">user_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L9">packet/_api/ResGetVIPInfo.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="vip_growth_speed" class="tsd-anchor"></a>
+					<h3>vip_<wbr>growth_<wbr>speed</h3>
+					<div class="tsd-signature tsd-kind-icon">vip_<wbr>growth_<wbr>speed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L14">packet/_api/ResGetVIPInfo.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="vip_growth_total" class="tsd-anchor"></a>
+					<h3>vip_<wbr>growth_<wbr>total</h3>
+					<div class="tsd-signature tsd-kind-icon">vip_<wbr>growth_<wbr>total<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L15">packet/_api/ResGetVIPInfo.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="vip_level" class="tsd-anchor"></a>
+					<h3>vip_<wbr>level</h3>
+					<div class="tsd-signature tsd-kind-icon">vip_<wbr>level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetVIPInfo.ts#L13">packet/_api/ResGetVIPInfo.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,10 +190,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/driver.html">driver</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet.html">packet</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/packet__api.html">packet._<wbr>api</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -151,41 +206,68 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetfriendlist.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Friend<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetgroupinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetgroupnotice.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Notice</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetvipinfo.html" class="tsd-kind-icon">Req<wbr>GetVIPInfo</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqsendgroupnotice.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Group<wbr>Notice</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqsetrestart.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Restart</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.resgetfriendlistflatten.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List<wbr>Flatten</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.resgetfriendliststructured.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List<wbr>Structured</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.resgetgroupinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.resgetgroupnotice.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Notice</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.cqhttpmessage.html" class="tsd-kind-icon">CQHTTPMessage</a>
+						<a href="packet__api.resgetvipinfo.html" class="tsd-kind-icon">Res<wbr>GetVIPInfo</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet.cqhttpmessage.html#data" class="tsd-kind-icon">data</a>
+								<a href="packet__api.resgetvipinfo.html#level" class="tsd-kind-icon">level</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet.cqhttpmessage.html#type" class="tsd-kind-icon">type</a>
+								<a href="packet__api.resgetvipinfo.html#level_speed" class="tsd-kind-icon">level_<wbr>speed</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet__api.resgetvipinfo.html#nickname" class="tsd-kind-icon">nickname</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet__api.resgetvipinfo.html#user_id" class="tsd-kind-icon">user_<wbr>id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet__api.resgetvipinfo.html#vip_growth_speed" class="tsd-kind-icon">vip_<wbr>growth_<wbr>speed</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet__api.resgetvipinfo.html#vip_growth_total" class="tsd-kind-icon">vip_<wbr>growth_<wbr>total</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet__api.resgetvipinfo.html#vip_level" class="tsd-kind-icon">vip_<wbr>level</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramanonymous.html" class="tsd-kind-icon">Param<wbr>Anonymous</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramgroupmemberinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Member<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramuserinfo.html" class="tsd-kind-icon">Param<wbr>User<wbr>Info</a>
-					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#packetrequest" class="tsd-kind-icon">Packet<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#packetresponse" class="tsd-kind-icon">Packet<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#paramapimessage" class="tsd-kind-icon">ParamAPIMessage</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#parameventmessage" class="tsd-kind-icon">Param<wbr>Event<wbr>Message</a>
+						<a href="../modules/packet__api.html#resgetfriendlist" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List</a>
 					</li>
 				</ul>
 			</nav>

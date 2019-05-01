@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CQHTTPMessage | cq-websocket</title>
+	<title>EventPrivateMsg | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/packet.html">packet</a>
+					<a href="../modules/packet_event.html">packet.event</a>
 				</li>
 				<li>
-					<a href="packet.cqhttpmessage.html">CQHTTPMessage</a>
+					<a href="packet_event.eventprivatemsg.html">EventPrivateMsg</a>
 				</li>
 			</ul>
-			<h1>Interface CQHTTPMessage</h1>
+			<h1>Interface EventPrivateMsg</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>see</dt>
-						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/Message?id=消息段（广义-cq-码）" class="external">CQHTTP#消息段</a></p>
+						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/Post?id=私聊消息" class="external">CQHTTP#私聊消息</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -78,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CQHTTPMessage</span>
+						<span class="target">EventPrivateMsg</span>
 					</li>
 				</ul>
 			</section>
@@ -89,8 +89,15 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.cqhttpmessage.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.cqhttpmessage.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#font" class="tsd-kind-icon">font</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#message_id" class="tsd-kind-icon">message_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#message_type" class="tsd-kind-icon">message_<wbr>type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#post_type" class="tsd-kind-icon">post_<wbr>type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#raw_message" class="tsd-kind-icon">raw_<wbr>message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#sender" class="tsd-kind-icon">sender</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#sub_type" class="tsd-kind-icon">sub_<wbr>type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_event.eventprivatemsg.html#user_id" class="tsd-kind-icon">user_<wbr>id</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,22 +106,92 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="font" class="tsd-anchor"></a>
+					<h3>font</h3>
+					<div class="tsd-signature tsd-kind-icon">font<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/CQHTTPMessage.ts#L10">packet/CQHTTPMessage.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L19">packet/event/EventPrivateMsg.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="packet.cqhttpmessage.html" class="tsd-signature-type">CQHTTPMessage</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/CQHTTPMessage.ts#L9">packet/CQHTTPMessage.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L17">packet/event/EventPrivateMsg.ts:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="message_id" class="tsd-anchor"></a>
+					<h3>message_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">message_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L15">packet/event/EventPrivateMsg.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="message_type" class="tsd-anchor"></a>
+					<h3>message_<wbr>type</h3>
+					<div class="tsd-signature tsd-kind-icon">message_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"private"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L13">packet/event/EventPrivateMsg.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="post_type" class="tsd-anchor"></a>
+					<h3>post_<wbr>type</h3>
+					<div class="tsd-signature tsd-kind-icon">post_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"message"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L12">packet/event/EventPrivateMsg.ts:12</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="raw_message" class="tsd-anchor"></a>
+					<h3>raw_<wbr>message</h3>
+					<div class="tsd-signature tsd-kind-icon">raw_<wbr>message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L18">packet/event/EventPrivateMsg.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sender" class="tsd-anchor"></a>
+					<h3>sender</h3>
+					<div class="tsd-signature tsd-kind-icon">sender<span class="tsd-signature-symbol">:</span> <a href="packet.paramuserinfo.html" class="tsd-signature-type">ParamUserInfo</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L20">packet/event/EventPrivateMsg.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sub_type" class="tsd-anchor"></a>
+					<h3>sub_<wbr>type</h3>
+					<div class="tsd-signature tsd-kind-icon">sub_<wbr>type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"friend"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"group"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"discuss"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"other"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L14">packet/event/EventPrivateMsg.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="user_id" class="tsd-anchor"></a>
+					<h3>user_<wbr>id</h3>
+					<div class="tsd-signature tsd-kind-icon">user_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/event/EventPrivateMsg.ts#L16">packet/event/EventPrivateMsg.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,7 +212,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/driver.html">driver</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet.html">packet</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -144,7 +221,7 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet_api.html">packet.api</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/packet_event.html">packet.event</a>
 					</li>
 				</ul>
@@ -154,38 +231,41 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.cqhttpmessage.html" class="tsd-kind-icon">CQHTTPMessage</a>
+						<a href="packet_event.eventprivatemsg.html" class="tsd-kind-icon">Event<wbr>Private<wbr>Msg</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet.cqhttpmessage.html#data" class="tsd-kind-icon">data</a>
+								<a href="packet_event.eventprivatemsg.html#font" class="tsd-kind-icon">font</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet.cqhttpmessage.html#type" class="tsd-kind-icon">type</a>
+								<a href="packet_event.eventprivatemsg.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#message_id" class="tsd-kind-icon">message_<wbr>id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#message_type" class="tsd-kind-icon">message_<wbr>type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#post_type" class="tsd-kind-icon">post_<wbr>type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#raw_message" class="tsd-kind-icon">raw_<wbr>message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#sender" class="tsd-kind-icon">sender</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#sub_type" class="tsd-kind-icon">sub_<wbr>type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_event.eventprivatemsg.html#user_id" class="tsd-kind-icon">user_<wbr>id</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramanonymous.html" class="tsd-kind-icon">Param<wbr>Anonymous</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramgroupmemberinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Member<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramuserinfo.html" class="tsd-kind-icon">Param<wbr>User<wbr>Info</a>
-					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#packetrequest" class="tsd-kind-icon">Packet<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#packetresponse" class="tsd-kind-icon">Packet<wbr>Response</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#paramapimessage" class="tsd-kind-icon">ParamAPIMessage</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#parameventmessage" class="tsd-kind-icon">Param<wbr>Event<wbr>Message</a>
+						<a href="../modules/packet_event.html#packetevent" class="tsd-kind-icon">Packet<wbr>Event</a>
 					</li>
 				</ul>
 			</nav>

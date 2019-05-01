@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CQHTTPMessage | cq-websocket</title>
+	<title>ResGetCSRFToken | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,13 +52,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/packet.html">packet</a>
+					<a href="../modules/packet_api.html">packet.api</a>
 				</li>
 				<li>
-					<a href="packet.cqhttpmessage.html">CQHTTPMessage</a>
+					<a href="packet_api.resgetcsrftoken.html">ResGetCSRFToken</a>
 				</li>
 			</ul>
-			<h1>Interface CQHTTPMessage</h1>
+			<h1>Interface ResGetCSRFToken</h1>
 		</div>
 	</div>
 </header>
@@ -69,7 +69,7 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>see</dt>
-						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/Message?id=消息段（广义-cq-码）" class="external">CQHTTP#消息段</a></p>
+						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/API?id=响应数据24" class="external">CQHTTP#获取 CSRF Token-响应数据</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -78,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">CQHTTPMessage</span>
+						<span class="target">ResGetCSRFToken</span>
 					</li>
 				</ul>
 			</section>
@@ -89,8 +89,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.cqhttpmessage.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.cqhttpmessage.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.resgetcsrftoken.html#token" class="tsd-kind-icon">token</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,22 +98,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="token" class="tsd-anchor"></a>
+					<h3>token</h3>
+					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/CQHTTPMessage.ts#L10">packet/CQHTTPMessage.ts:10</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/CQHTTPMessage.ts#L9">packet/CQHTTPMessage.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/api/ResGetCSRFToken.ts#L9">packet/api/ResGetCSRFToken.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,13 +124,13 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/driver.html">driver</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet.html">packet</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet__api.html">packet._<wbr>api</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/packet_api.html">packet.api</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -151,41 +140,134 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqcleandatadir.html" class="tsd-kind-icon">Req<wbr>Clean<wbr>Data<wbr>Dir</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqdeletemsg.html" class="tsd-kind-icon">Req<wbr>Delete<wbr>Msg</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqgetgroupmemberinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Member<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqgetgroupmemberlist.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Member<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqgetimage.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqgetrecord.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqgetstrangerinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Stranger<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsenddiscussmsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Discuss<wbr>Msg</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsendgroupmsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Group<wbr>Msg</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsendlike.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Like</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsendmsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Msg</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsendprivatemsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Private<wbr>Msg</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetdiscussleave.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Discuss<wbr>Leave</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetfriendaddrequest.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Friend<wbr>Add<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupaddrequest.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Add<wbr>Request</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupadmin.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Admin</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupanonymous.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Anonymous</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupanonymousban.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Anonymous<wbr>Ban</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupban.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Ban</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupcard.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Card</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupkick.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Kick</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupleave.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Leave</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupspecialtitle.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Special<wbr>Title</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetgroupwholeban.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Whole<wbr>Ban</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.reqsetrestartplugin.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Restart<wbr>Plugin</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.rescansendimage.html" class="tsd-kind-icon">Res<wbr>Can<wbr>Send<wbr>Image</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.rescansendrecord.html" class="tsd-kind-icon">Res<wbr>Can<wbr>Send<wbr>Record</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.cqhttpmessage.html" class="tsd-kind-icon">CQHTTPMessage</a>
+						<a href="packet_api.resgetcsrftoken.html" class="tsd-kind-icon">Res<wbr>GetCSRFToken</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet.cqhttpmessage.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet.cqhttpmessage.html#type" class="tsd-kind-icon">type</a>
+								<a href="packet_api.resgetcsrftoken.html#token" class="tsd-kind-icon">token</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramanonymous.html" class="tsd-kind-icon">Param<wbr>Anonymous</a>
+						<a href="packet_api.resgetcookies.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Cookies</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramgroupmemberinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Member<wbr>Info</a>
+						<a href="packet_api.resgetcredentials.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Credentials</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet.paramuserinfo.html" class="tsd-kind-icon">Param<wbr>User<wbr>Info</a>
+						<a href="packet_api.resgetgrouplist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>List</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#packetrequest" class="tsd-kind-icon">Packet<wbr>Request</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetgroupmemberinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Member<wbr>Info</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#packetresponse" class="tsd-kind-icon">Packet<wbr>Response</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetgroupmemberlist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Member<wbr>List</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#paramapimessage" class="tsd-kind-icon">ParamAPIMessage</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetimage.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Image</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet.html#parameventmessage" class="tsd-kind-icon">Param<wbr>Event<wbr>Message</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetlogininfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Login<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetrecord.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Record</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetstatus.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetstrangerinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Stranger<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.resgetversioninfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Version<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet_api.ressendmsg.html" class="tsd-kind-icon">Res<wbr>Send<wbr>Msg</a>
 					</li>
 				</ul>
 			</nav>
