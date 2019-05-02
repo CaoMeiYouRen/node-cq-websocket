@@ -2,9 +2,8 @@
  * @module driver
  */
 
-import { PacketRequest } from '../packet/PacketRequest'
-import { PacketResponse } from '../packet/PacketResponse'
+import { PacketAPIRequest, PacketAPIResponse } from '../packet/PacketAPI'
 
 export interface APIEmitter {
-  send (pkt: PacketRequest): Promise<PacketResponse>
+  send<R extends PacketAPIRequest> (pkt: R): Promise<PacketAPIResponse<R>>
 }

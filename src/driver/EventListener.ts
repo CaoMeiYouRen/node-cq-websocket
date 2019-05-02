@@ -2,7 +2,7 @@
  * @module driver
  */
 
-import { PacketEvent } from '../packet/event/PacketEvent'
+import { PacketEvent } from '../packet/PacketEvent'
 
 export interface EventListener {
   on (event: 'message', listener: (pkt: PacketEvent) => void): this
