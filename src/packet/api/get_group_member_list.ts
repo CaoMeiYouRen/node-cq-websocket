@@ -2,7 +2,7 @@
  * @module packet.api
  */
 
-import { ParamGroupMemberInfo } from '../ParamGroupMemberInfo'
+import { ParamAPIGroupMemberInfo } from '../ParamAPIGroupMemberInfo'
 
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=get_group_member_list-获取群成员列表 CQHTTP#获取群成员列表}
@@ -20,5 +20,5 @@ export interface ReqGetGroupMemberList {
 export interface ResGetGroupMemberList {
   status: 'ok' | 'failed'
   retcode: number
-  data: Array<ParamGroupMemberInfo>
+  data: Array<ParamAPIGroupMemberInfo>
 }

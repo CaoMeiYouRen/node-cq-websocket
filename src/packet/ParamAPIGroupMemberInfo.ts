@@ -4,7 +4,7 @@
 
 import { ParamUserInfo } from './ParamUserInfo'
 
-export interface ParamGroupMemberInfo extends ParamUserInfo {
+export interface ParamAPIGroupMemberInfo extends ParamUserInfo {
   group_id: number
   card: string
   area: string
