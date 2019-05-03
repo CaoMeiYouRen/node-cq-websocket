@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -70,7 +72,14 @@
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.cqhttpmessage.html" class="tsd-kind-icon">CQHTTPMessage</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.packetapiresponseempty.html" class="tsd-kind-icon">PacketAPIResponse<wbr>Empty</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported"><a href="../interfaces/packet.paramadmininfo.html" class="tsd-kind-icon">Param<wbr>Admin<wbr>Info</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramanonymous.html" class="tsd-kind-icon">Param<wbr>Anonymous</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramfriendgroupinfo.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Group<wbr>Info</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramfriendgroupinfoflatten.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Group<wbr>Info<wbr>Flatten</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramfriendinfo.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Info</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramfriendinfoflatten.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Info<wbr>Flatten</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramgroupinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Info</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramgroupmemberinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Member<wbr>Info</a></li>
 								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/packet.paramuserinfo.html" class="tsd-kind-icon">Param<wbr>User<wbr>Info</a></li>
 							</ul>
@@ -78,8 +87,9 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="packet.html#packetrequest" class="tsd-kind-icon">Packet<wbr>Request</a></li>
-								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="packet.html#packetresponse" class="tsd-kind-icon">Packet<wbr>Response</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="packet.html#packetapirequest" class="tsd-kind-icon">PacketAPIRequest</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="packet.html#packetapiresponse" class="tsd-kind-icon">PacketAPIResponse</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="packet.html#packetevent" class="tsd-kind-icon">Packet<wbr>Event</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="packet.html#paramapimessage" class="tsd-kind-icon">ParamAPIMessage</a></li>
 								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="packet.html#parameventmessage" class="tsd-kind-icon">Param<wbr>Event<wbr>Message</a></li>
 							</ul>
@@ -90,22 +100,49 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
-					<a name="packetrequest" class="tsd-anchor"></a>
-					<h3>Packet<wbr>Request</h3>
-					<div class="tsd-signature tsd-kind-icon">Packet<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="../interfaces/packet_api.reqcleandatadir.html" class="tsd-signature-type">ReqCleanDataDir</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqdeletemsg.html" class="tsd-signature-type">ReqDeleteMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetgroupmemberinfo.html" class="tsd-signature-type">ReqGetGroupMemberInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetgroupmemberlist.html" class="tsd-signature-type">ReqGetGroupMemberList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetimage.html" class="tsd-signature-type">ReqGetImage</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetrecord.html" class="tsd-signature-type">ReqGetRecord</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetstrangerinfo.html" class="tsd-signature-type">ReqGetStrangerInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsenddiscussmsg.html" class="tsd-signature-type">ReqSendDiscussMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendgroupmsg.html" class="tsd-signature-type">ReqSendGroupMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendlike.html" class="tsd-signature-type">ReqSendLike</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendmsg.html" class="tsd-signature-type">ReqSendMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendprivatemsg.html" class="tsd-signature-type">ReqSendPrivateMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetdiscussleave.html" class="tsd-signature-type">ReqSetDiscussLeave</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetfriendaddrequest.html" class="tsd-signature-type">ReqSetFriendAddRequest</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupaddrequest.html" class="tsd-signature-type">ReqSetGroupAddRequest</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupadmin.html" class="tsd-signature-type">ReqSetGroupAdmin</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupanonymous.html" class="tsd-signature-type">ReqSetGroupAnonymous</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupanonymousban.html" class="tsd-signature-type">ReqSetGroupAnonymousBan</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupban.html" class="tsd-signature-type">ReqSetGroupBan</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupcard.html" class="tsd-signature-type">ReqSetGroupCard</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupkick.html" class="tsd-signature-type">ReqSetGroupKick</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupleave.html" class="tsd-signature-type">ReqSetGroupLeave</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupspecialtitle.html" class="tsd-signature-type">ReqSetGroupSpecialTitle</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupwholeban.html" class="tsd-signature-type">ReqSetGroupWholeBan</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetrestartplugin.html" class="tsd-signature-type">ReqSetRestartPlugin</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetfriendlist.html" class="tsd-signature-type">ReqGetFriendList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetgroupinfo.html" class="tsd-signature-type">ReqGetGroupInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetgroupnotice.html" class="tsd-signature-type">ReqGetGroupNotice</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetvipinfo.html" class="tsd-signature-type">ReqGetVIPInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqsendgroupnotice.html" class="tsd-signature-type">ReqSendGroupNotice</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqsetrestart.html" class="tsd-signature-type">ReqSetRestart</a></div>
+					<a name="packetapirequest" class="tsd-anchor"></a>
+					<h3>PacketAPIRequest</h3>
+					<div class="tsd-signature tsd-kind-icon">PacketAPIRequest<span class="tsd-signature-symbol">:</span> <a href="../interfaces/packet_api.reqcleandatadir.html" class="tsd-signature-type">ReqCleanDataDir</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendprivatemsg.html" class="tsd-signature-type">ReqSendPrivateMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendgroupmsg.html" class="tsd-signature-type">ReqSendGroupMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsenddiscussmsg.html" class="tsd-signature-type">ReqSendDiscussMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendmsg.html" class="tsd-signature-type">ReqSendMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqdeletemsg.html" class="tsd-signature-type">ReqDeleteMsg</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsendlike.html" class="tsd-signature-type">ReqSendLike</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupkick.html" class="tsd-signature-type">ReqSetGroupKick</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupban.html" class="tsd-signature-type">ReqSetGroupBan</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupanonymousban.html" class="tsd-signature-type">ReqSetGroupAnonymousBan</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupwholeban.html" class="tsd-signature-type">ReqSetGroupWholeBan</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupadmin.html" class="tsd-signature-type">ReqSetGroupAdmin</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupanonymous.html" class="tsd-signature-type">ReqSetGroupAnonymous</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupcard.html" class="tsd-signature-type">ReqSetGroupCard</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupleave.html" class="tsd-signature-type">ReqSetGroupLeave</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupspecialtitle.html" class="tsd-signature-type">ReqSetGroupSpecialTitle</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetdiscussleave.html" class="tsd-signature-type">ReqSetDiscussLeave</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetfriendaddrequest.html" class="tsd-signature-type">ReqSetFriendAddRequest</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetgroupaddrequest.html" class="tsd-signature-type">ReqSetGroupAddRequest</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetlogininfo.html" class="tsd-signature-type">ReqGetLoginInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetstrangerinfo.html" class="tsd-signature-type">ReqGetStrangerInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetgrouplist.html" class="tsd-signature-type">ReqGetGroupList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetgroupmemberinfo.html" class="tsd-signature-type">ReqGetGroupMemberInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetgroupmemberlist.html" class="tsd-signature-type">ReqGetGroupMemberList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetcookies.html" class="tsd-signature-type">ReqGetCookies</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetcsrftoken.html" class="tsd-signature-type">ReqGetCSRFToken</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetcredentials.html" class="tsd-signature-type">ReqGetCredentials</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetrecord.html" class="tsd-signature-type">ReqGetRecord</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetimage.html" class="tsd-signature-type">ReqGetImage</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqcansendimage.html" class="tsd-signature-type">ReqCanSendImage</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqcansendrecord.html" class="tsd-signature-type">ReqCanSendRecord</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetstatus.html" class="tsd-signature-type">ReqGetStatus</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqgetversioninfo.html" class="tsd-signature-type">ReqGetVersionInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqsetrestartplugin.html" class="tsd-signature-type">ReqSetRestartPlugin</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.reqcleanpluginlog.html" class="tsd-signature-type">ReqCleanPluginLog</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_packet__api_get_friend_list_.reqgetfriendlist.html" class="tsd-signature-type">ReqGetFriendList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_packet__api_get_friend_list_.reqgetfriendlistflatten.html" class="tsd-signature-type">ReqGetFriendListFlatten</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetgroupinfo.html" class="tsd-signature-type">ReqGetGroupInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetgroupnotice.html" class="tsd-signature-type">ReqGetGroupNotice</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqgetvipinfo.html" class="tsd-signature-type">ReqGetVIPInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqsendgroupnotice.html" class="tsd-signature-type">ReqSendGroupNotice</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.reqsetrestart.html" class="tsd-signature-type">ReqSetRestart</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/PacketRequest.ts#L37">packet/PacketRequest.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/PacketAPI.ts#L55">packet/PacketAPI.ts:55</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://cqhttp.cc/docs/4.10/#/WebSocketAPI?id=api-接口" class="external">CQHTTP#API 接口</a></p>
+							</dd>
+						</dl>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
-					<a name="packetresponse" class="tsd-anchor"></a>
-					<h3>Packet<wbr>Response</h3>
-					<div class="tsd-signature tsd-kind-icon">Packet<wbr>Response<span class="tsd-signature-symbol">:</span> <a href="../interfaces/packet_api.rescansendimage.html" class="tsd-signature-type">ResCanSendImage</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.rescansendrecord.html" class="tsd-signature-type">ResCanSendRecord</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetcookies.html" class="tsd-signature-type">ResGetCookies</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetcredentials.html" class="tsd-signature-type">ResGetCredentials</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetcsrftoken.html" class="tsd-signature-type">ResGetCSRFToken</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetgrouplist.html" class="tsd-signature-type">ResGetGroupList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetgroupmemberinfo.html" class="tsd-signature-type">ResGetGroupMemberInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetgroupmemberlist.html" class="tsd-signature-type">ResGetGroupMemberList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetimage.html" class="tsd-signature-type">ResGetImage</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetlogininfo.html" class="tsd-signature-type">ResGetLoginInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetrecord.html" class="tsd-signature-type">ResGetRecord</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetstatus.html" class="tsd-signature-type">ResGetStatus</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetstrangerinfo.html" class="tsd-signature-type">ResGetStrangerInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.resgetversioninfo.html" class="tsd-signature-type">ResGetVersionInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet_api.ressendmsg.html" class="tsd-signature-type">ResSendMsg</a><span class="tsd-signature-symbol"> | </span><a href="packet__api.html#resgetfriendlist" class="tsd-signature-type">ResGetFriendList</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.resgetgroupinfo.html" class="tsd-signature-type">ResGetGroupInfo</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.resgetgroupnotice.html" class="tsd-signature-type">ResGetGroupNotice</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet__api.resgetvipinfo.html" class="tsd-signature-type">ResGetVIPInfo</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="packetapiresponse" class="tsd-anchor"></a>
+					<h3>PacketAPIResponse</h3>
+					<div class="tsd-signature tsd-kind-icon">PacketAPIResponse<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PacketAPIResponse&lt;R&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/PacketResponse.ts#L25">packet/PacketResponse.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/PacketAPI.ts#L112">packet/PacketAPI.ts:112</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Response packets are looked up by the corresponding <a href="packet.html#packetapirequest">PacketAPIRequest</a>.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>see</dt>
+							<dd><p><a href="https://cqhttp.cc/docs/4.10/#/WebSocketAPI?id=api-接口" class="external">CQHTTP#API 接口</a></p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="packetevent" class="tsd-anchor"></a>
+					<h3>Packet<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">Packet<wbr>Event<span class="tsd-signature-symbol">:</span> <a href="../interfaces/packet_event.eventprivatemsg.html" class="tsd-signature-type">EventPrivateMsg</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/PacketEvent.ts#L7">packet/PacketEvent.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -115,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">ParamAPIMessage<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/packet.cqhttpmessage.html" class="tsd-signature-type">CQHTTPMessage</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/packet.cqhttpmessage.html" class="tsd-signature-type">CQHTTPMessage</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/ParamAPIMessage.ts#L7">packet/ParamAPIMessage.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/ParamAPIMessage.ts#L7">packet/ParamAPIMessage.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -125,7 +162,7 @@
 					<div class="tsd-signature tsd-kind-icon">Param<wbr>Event<wbr>Message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/packet.cqhttpmessage.html" class="tsd-signature-type">CQHTTPMessage</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/ParamEventMessage.ts#L7">packet/ParamEventMessage.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/ParamEventMessage.ts#L7">packet/ParamEventMessage.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -142,6 +179,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_packet__api_get_friend_list_.html">"packet/_<wbr>api/get_<wbr>friend_<wbr>list"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="driver.html">driver</a>
@@ -166,7 +206,28 @@
 						<a href="../interfaces/packet.cqhttpmessage.html" class="tsd-kind-icon">CQHTTPMessage</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/packet.packetapiresponseempty.html" class="tsd-kind-icon">PacketAPIResponse<wbr>Empty</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="../interfaces/packet.paramadmininfo.html" class="tsd-kind-icon">Param<wbr>Admin<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/packet.paramanonymous.html" class="tsd-kind-icon">Param<wbr>Anonymous</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/packet.paramfriendgroupinfo.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Group<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/packet.paramfriendgroupinfoflatten.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Group<wbr>Info<wbr>Flatten</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/packet.paramfriendinfo.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/packet.paramfriendinfoflatten.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Info<wbr>Flatten</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/packet.paramgroupinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="../interfaces/packet.paramgroupmemberinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Member<wbr>Info</a>
@@ -175,10 +236,13 @@
 						<a href="../interfaces/packet.paramuserinfo.html" class="tsd-kind-icon">Param<wbr>User<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="packet.html#packetrequest" class="tsd-kind-icon">Packet<wbr>Request</a>
+						<a href="packet.html#packetapirequest" class="tsd-kind-icon">PacketAPIRequest</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="packet.html#packetapiresponse" class="tsd-kind-icon">PacketAPIResponse</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="packet.html#packetresponse" class="tsd-kind-icon">Packet<wbr>Response</a>
+						<a href="packet.html#packetevent" class="tsd-kind-icon">Packet<wbr>Event</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
 						<a href="packet.html#paramapimessage" class="tsd-kind-icon">ParamAPIMessage</a>

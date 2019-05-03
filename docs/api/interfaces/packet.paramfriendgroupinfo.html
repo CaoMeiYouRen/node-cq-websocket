@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ResGetFriendListStructured | cq-websocket</title>
+	<title>ParamFriendGroupInfo | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -52,33 +54,29 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/packet__api.html">packet._api</a>
+					<a href="../modules/packet.html">packet</a>
 				</li>
 				<li>
-					<a href="packet__api.resgetfriendliststructured.html">ResGetFriendListStructured</a>
+					<a href="packet.paramfriendgroupinfo.html">ParamFriendGroupInfo</a>
 				</li>
 			</ul>
-			<h1>Interface ResGetFriendListStructured</h1>
+			<h1>Interface ParamFriendGroupInfo</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<dl class="tsd-comment-tags">
-						<dt>see</dt>
-						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/API?id=响应数据36" class="external">CQHTTP#获取好友列表-响应数据</a></p>
-						</dd>
-					</dl>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ResGetFriendListStructured</span>
+						<a href="packet.paramfriendgroupinfoflatten.html" class="tsd-signature-type">ParamFriendGroupInfoFlatten</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ParamFriendGroupInfo</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -89,9 +87,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetfriendliststructured.html#friend_group_id" class="tsd-kind-icon">friend_<wbr>group_<wbr>id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetfriendliststructured.html#friend_group_name" class="tsd-kind-icon">friend_<wbr>group_<wbr>name</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetfriendliststructured.html#friends" class="tsd-kind-icon">friends</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="packet.paramfriendgroupinfo.html#friend_group_id" class="tsd-kind-icon">friend_<wbr>group_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="packet.paramfriendgroupinfo.html#friend_group_name" class="tsd-kind-icon">friend_<wbr>group_<wbr>name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet.paramfriendgroupinfo.html#friends" class="tsd-kind-icon">friends</a></li>
 							</ul>
 						</section>
 					</div>
@@ -99,33 +97,35 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="friend_group_id" class="tsd-anchor"></a>
 					<h3>friend_<wbr>group_<wbr>id</h3>
 					<div class="tsd-signature tsd-kind-icon">friend_<wbr>group_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="packet.paramfriendgroupinfoflatten.html">ParamFriendGroupInfoFlatten</a>.<a href="packet.paramfriendgroupinfoflatten.html#friend_group_id">friend_group_id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetFriendList.ts#L9">packet/_api/ResGetFriendList.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/ParamFriendGroupInfo.ts#L10">packet/ParamFriendGroupInfo.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="friend_group_name" class="tsd-anchor"></a>
 					<h3>friend_<wbr>group_<wbr>name</h3>
 					<div class="tsd-signature tsd-kind-icon">friend_<wbr>group_<wbr>name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="packet.paramfriendgroupinfoflatten.html">ParamFriendGroupInfoFlatten</a>.<a href="packet.paramfriendgroupinfoflatten.html#friend_group_name">friend_group_name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetFriendList.ts#L10">packet/_api/ResGetFriendList.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/ParamFriendGroupInfo.ts#L11">packet/ParamFriendGroupInfo.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="friends" class="tsd-anchor"></a>
 					<h3>friends</h3>
-					<div class="tsd-signature tsd-kind-icon">friends<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">friends<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="packet.paramfriendinfo.html" class="tsd-signature-type">ParamFriendInfo</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/_api/ResGetFriendList.ts#L11">packet/_api/ResGetFriendList.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/ParamFriendGroupInfo.ts#L15">packet/ParamFriendGroupInfo.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -144,12 +144,15 @@
 						<a href="../modules/_index_.html">"index"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/driver.html">driver</a>
+						<a href="../modules/_packet__api_get_friend_list_.html">"packet/_<wbr>api/get_<wbr>friend_<wbr>list"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/packet.html">packet</a>
+						<a href="../modules/driver.html">driver</a>
 					</li>
 					<li class="current tsd-kind-external-module">
+						<a href="../modules/packet.html">packet</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet__api.html">packet._<wbr>api</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -163,55 +166,67 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.reqgetfriendlist.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Friend<wbr>List</a>
+						<a href="packet.cqhttpmessage.html" class="tsd-kind-icon">CQHTTPMessage</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.reqgetgroupinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Info</a>
+						<a href="packet.packetapiresponseempty.html" class="tsd-kind-icon">PacketAPIResponse<wbr>Empty</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
+						<a href="packet.paramadmininfo.html" class="tsd-kind-icon">Param<wbr>Admin<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.reqgetgroupnotice.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Notice</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.reqgetvipinfo.html" class="tsd-kind-icon">Req<wbr>GetVIPInfo</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.reqsendgroupnotice.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Group<wbr>Notice</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.reqsetrestart.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Restart</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.resgetfriendlistflatten.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List<wbr>Flatten</a>
+						<a href="packet.paramanonymous.html" class="tsd-kind-icon">Param<wbr>Anonymous</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.resgetfriendliststructured.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List<wbr>Structured</a>
+						<a href="packet.paramfriendgroupinfo.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Group<wbr>Info</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet__api.resgetfriendliststructured.html#friend_group_id" class="tsd-kind-icon">friend_<wbr>group_<wbr>id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="packet.paramfriendgroupinfo.html#friend_group_id" class="tsd-kind-icon">friend_<wbr>group_<wbr>id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="packet.paramfriendgroupinfo.html#friend_group_name" class="tsd-kind-icon">friend_<wbr>group_<wbr>name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet__api.resgetfriendliststructured.html#friend_group_name" class="tsd-kind-icon">friend_<wbr>group_<wbr>name</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet__api.resgetfriendliststructured.html#friends" class="tsd-kind-icon">friends</a>
+								<a href="packet.paramfriendgroupinfo.html#friends" class="tsd-kind-icon">friends</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.resgetgroupinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Info</a>
+						<a href="packet.paramfriendgroupinfoflatten.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Group<wbr>Info<wbr>Flatten</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.resgetgroupnotice.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Notice</a>
+						<a href="packet.paramfriendinfo.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet__api.resgetvipinfo.html" class="tsd-kind-icon">Res<wbr>GetVIPInfo</a>
+						<a href="packet.paramfriendinfoflatten.html" class="tsd-kind-icon">Param<wbr>Friend<wbr>Info<wbr>Flatten</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet.paramgroupinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet.paramgroupmemberinfo.html" class="tsd-kind-icon">Param<wbr>Group<wbr>Member<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet.paramuserinfo.html" class="tsd-kind-icon">Param<wbr>User<wbr>Info</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
-						<a href="../modules/packet__api.html#resgetfriendlist" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List</a>
+						<a href="../modules/packet.html#packetapirequest" class="tsd-kind-icon">PacketAPIRequest</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+						<a href="../modules/packet.html#packetapiresponse" class="tsd-kind-icon">PacketAPIResponse</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/packet.html#packetevent" class="tsd-kind-icon">Packet<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/packet.html#paramapimessage" class="tsd-kind-icon">ParamAPIMessage</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+						<a href="../modules/packet.html#parameventmessage" class="tsd-kind-icon">Param<wbr>Event<wbr>Message</a>
 					</li>
 				</ul>
 			</nav>

@@ -38,6 +38,8 @@
 							</div>
 							<input type="checkbox" id="tsd-filter-inherited" checked />
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -89,7 +91,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.reqdeletemsg.html#message_id" class="tsd-kind-icon">message_<wbr>id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.reqdeletemsg.html#action" class="tsd-kind-icon">action</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.reqdeletemsg.html#params" class="tsd-kind-icon">params</a></li>
 							</ul>
 						</section>
 					</div>
@@ -98,14 +101,32 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="message_id" class="tsd-anchor"></a>
-					<h3>message_<wbr>id</h3>
-					<div class="tsd-signature tsd-kind-icon">message_<wbr>id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="action" class="tsd-anchor"></a>
+					<h3>action</h3>
+					<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"delete_msg"</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/67204cd/src/packet/api/ReqDeleteMsg.ts#L9">packet/api/ReqDeleteMsg.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/api/delete_msg.ts#L9">packet/api/delete_msg.ts:9</a></li>
 						</ul>
 					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="params" class="tsd-anchor"></a>
+					<h3>params</h3>
+					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/api/delete_msg.ts#L10">packet/api/delete_msg.ts:10</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>message_<wbr>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -120,6 +141,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_index_.html">"index"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_packet__api_get_friend_list_.html">"packet/_<wbr>api/get_<wbr>friend_<wbr>list"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/driver.html">driver</a>
@@ -140,135 +164,21 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqcleandatadir.html" class="tsd-kind-icon">Req<wbr>Clean<wbr>Data<wbr>Dir</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="packet_api.reqdeletemsg.html" class="tsd-kind-icon">Req<wbr>Delete<wbr>Msg</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="packet_api.reqdeletemsg.html#message_id" class="tsd-kind-icon">message_<wbr>id</a>
+								<a href="packet_api.reqdeletemsg.html#action" class="tsd-kind-icon">action</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet_api.reqdeletemsg.html#params" class="tsd-kind-icon">params</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqgetgroupmemberinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Member<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqgetgroupmemberlist.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Member<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqgetimage.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Image</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqgetrecord.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqgetstrangerinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Stranger<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsenddiscussmsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Discuss<wbr>Msg</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsendgroupmsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Group<wbr>Msg</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsendlike.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Like</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsendmsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Msg</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsendprivatemsg.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Private<wbr>Msg</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetdiscussleave.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Discuss<wbr>Leave</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetfriendaddrequest.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Friend<wbr>Add<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupaddrequest.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Add<wbr>Request</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupadmin.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Admin</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupanonymous.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Anonymous</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupanonymousban.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Anonymous<wbr>Ban</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupban.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Ban</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupcard.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Card</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupkick.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Kick</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupleave.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Leave</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupspecialtitle.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Special<wbr>Title</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetgroupwholeban.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Group<wbr>Whole<wbr>Ban</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.reqsetrestartplugin.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Restart<wbr>Plugin</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.rescansendimage.html" class="tsd-kind-icon">Res<wbr>Can<wbr>Send<wbr>Image</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.rescansendrecord.html" class="tsd-kind-icon">Res<wbr>Can<wbr>Send<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetcsrftoken.html" class="tsd-kind-icon">Res<wbr>GetCSRFToken</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetcookies.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Cookies</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetcredentials.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Credentials</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetgrouplist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetgroupmemberinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Member<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetgroupmemberlist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Member<wbr>List</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetimage.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Image</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetlogininfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Login<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetrecord.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Record</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetstatus.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Status</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetstrangerinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Stranger<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.resgetversioninfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Version<wbr>Info</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="packet_api.ressendmsg.html" class="tsd-kind-icon">Res<wbr>Send<wbr>Msg</a>
-					</li>
 				</ul>
 			</nav>
 		</div>
