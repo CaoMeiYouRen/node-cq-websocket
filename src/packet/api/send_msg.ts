@@ -24,5 +24,9 @@ export interface ReqSendMsg {
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据3 CQHTTP#发送消息-响应数据}
  */
 export interface ResSendMsg {
-  message_id: number
+  status: 'ok' | 'failed'
+  retcode: number
+  data: {
+    message_id: number
+  }
 }

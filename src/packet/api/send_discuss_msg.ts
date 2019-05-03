@@ -20,5 +20,9 @@ export interface ReqSendDiscussMsg {
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据2 CQHTTP#发送讨论组消息-响应数据}
  */
 export interface ResSendDiscussMsg {
-  message_id: number
+  status: 'ok' | 'failed'
+  retcode: number
+  data: {
+    message_id: number
+  }
 }

@@ -13,3 +13,14 @@ export interface ReqGetRecord {
     full_path: boolean
   }
 }
+
+/**
+ * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据26 CQHTTP#获取语音-响应数据}
+ */
+export interface ResGetRecord {
+  status: 'ok' | 'failed'
+  retcode: number
+  data: {
+    file: string
+  }
+}
