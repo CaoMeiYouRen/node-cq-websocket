@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ReqGetFriendListFlatten | cq-websocket</title>
+	<title>ResGetFriendList | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_packet__api_get_friend_list_.html">&quot;packet/_api/get_friend_list&quot;</a>
+					<a href="../modules/packet__api.html">packet._api</a>
 				</li>
 				<li>
-					<a href="_packet__api_get_friend_list_.reqgetfriendlistflatten.html">ReqGetFriendListFlatten</a>
+					<a href="packet__api.resgetfriendlist.html">ResGetFriendList</a>
 				</li>
 			</ul>
-			<h1>Interface ReqGetFriendListFlatten</h1>
+			<h1>Interface ResGetFriendList</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 				<div class="tsd-comment tsd-typography">
 					<dl class="tsd-comment-tags">
 						<dt>see</dt>
-						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/API?id=_get_friend_list-获取好友列表" class="external">CQHTTP#获取好友列表</a></p>
+						<dd><p><a href="https://cqhttp.cc/docs/4.10/#/API?id=响应数据36" class="external">CQHTTP#获取好友列表-响应数据</a></p>
 						</dd>
 					</dl>
 				</div>
@@ -80,7 +80,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ReqGetFriendListFlatten</span>
+						<span class="target">ResGetFriendList</span>
 					</li>
 				</ul>
 			</section>
@@ -91,8 +91,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_packet__api_get_friend_list_.reqgetfriendlistflatten.html#action" class="tsd-kind-icon">action</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_packet__api_get_friend_list_.reqgetfriendlistflatten.html#params" class="tsd-kind-icon">params</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetfriendlist.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetfriendlist.html#retcode" class="tsd-kind-icon">retcode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet__api.resgetfriendlist.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,32 +102,34 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="action" class="tsd-anchor"></a>
-					<h3>action</h3>
-					<div class="tsd-signature tsd-kind-icon">action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"_get_friend_list"</span></div>
+					<a name="data" class="tsd-anchor"></a>
+					<h3>data</h3>
+					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="packet.paramfriendgroupinfo.html" class="tsd-signature-type">ParamFriendGroupInfo</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/_api/get_friend_list.ts#L22">packet/_api/get_friend_list.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/78c6a29/src/packet/_api/get_friend_list.ts#L31">packet/_api/get_friend_list.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="params" class="tsd-anchor"></a>
-					<h3>params</h3>
-					<div class="tsd-signature tsd-kind-icon">params<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="retcode" class="tsd-anchor"></a>
+					<h3>retcode</h3>
+					<div class="tsd-signature tsd-kind-icon">retcode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/f3f7592/src/packet/_api/get_friend_list.ts#L23">packet/_api/get_friend_list.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/78c6a29/src/packet/_api/get_friend_list.ts#L30">packet/_api/get_friend_list.ts:30</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>flat<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">true</span></h5>
-							</li>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="status" class="tsd-anchor"></a>
+					<h3>status</h3>
+					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ok"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"failed"</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/78c6a29/src/packet/_api/get_friend_list.ts#L29">packet/_api/get_friend_list.ts:29</a></li>
 						</ul>
-					</div>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -142,16 +145,13 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_index_.html">"index"</a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_packet__api_get_friend_list_.html">"packet/_<wbr>api/get_<wbr>friend_<wbr>list"</a>
-					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/driver.html">driver</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet.html">packet</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/packet__api.html">packet._<wbr>api</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -165,28 +165,55 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_packet__api_get_friend_list_.reqgetfriendlist.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Friend<wbr>List</a>
+						<a href="packet__api.reqgetfriendlist.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Friend<wbr>List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetfriendlistflatten.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Friend<wbr>List<wbr>Flatten</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetgroupinfo.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetgroupnotice.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Group<wbr>Notice</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqgetvipinfo.html" class="tsd-kind-icon">Req<wbr>GetVIPInfo</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqsendgroupnotice.html" class="tsd-kind-icon">Req<wbr>Send<wbr>Group<wbr>Notice</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.reqsetrestart.html" class="tsd-kind-icon">Req<wbr>Set<wbr>Restart</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_packet__api_get_friend_list_.reqgetfriendlistflatten.html" class="tsd-kind-icon">Req<wbr>Get<wbr>Friend<wbr>List<wbr>Flatten</a>
+						<a href="packet__api.resgetfriendlist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_packet__api_get_friend_list_.reqgetfriendlistflatten.html#action" class="tsd-kind-icon">action</a>
+								<a href="packet__api.resgetfriendlist.html#data" class="tsd-kind-icon">data</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_packet__api_get_friend_list_.reqgetfriendlistflatten.html#params" class="tsd-kind-icon">params</a>
+								<a href="packet__api.resgetfriendlist.html#retcode" class="tsd-kind-icon">retcode</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="packet__api.resgetfriendlist.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_packet__api_get_friend_list_.resgetfriendlist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List</a>
+						<a href="packet__api.resgetfriendlistflatten.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List<wbr>Flatten</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="_packet__api_get_friend_list_.resgetfriendlistflatten.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Friend<wbr>List<wbr>Flatten</a>
+						<a href="packet__api.resgetgroupinfo.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.resgetgroupnotice.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>Notice</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="packet__api.resgetvipinfo.html" class="tsd-kind-icon">Res<wbr>GetVIPInfo</a>
 					</li>
 				</ul>
 			</nav>
