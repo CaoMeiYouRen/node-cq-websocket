@@ -3,6 +3,5 @@
   "out": "./docs/api",
   "excludeExternals": true,
   "excludePrivate": true,
-  "excludeProtected": true,
-  "excludeNotExported": true
+  "excludeProtected": true
 }
