@@ -2,6 +2,7 @@
  * @module packet.api
  */
 
+import { ResponseBase } from '../ResponseBase'
 import { ParamAPIMessage } from '../ParamAPIMessage'
 
 /**
@@ -19,9 +20,7 @@ export interface ReqSendGroupMsg {
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据1 CQHTTP#发送群消息-响应数据}
  */
-export interface ResSendGroupMsg {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResSendGroupMsg extends ResponseBase {
   data: {
     message_id: number
   }

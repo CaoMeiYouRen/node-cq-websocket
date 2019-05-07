@@ -2,6 +2,7 @@
  * @module packet.api
  */
 
+import { ResponseBase } from '../ResponseBase'
 import { ParamAPIGroupMemberInfo } from '../ParamAPIGroupMemberInfo'
 
 /**
@@ -19,8 +20,6 @@ export interface ReqGetGroupMemberInfo {
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据21 CQHTTP#获取群成员信息-响应数据}
  */
-export interface ResGetGroupMemberInfo {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResGetGroupMemberInfo extends ResponseBase {
   data: ParamAPIGroupMemberInfo
 }

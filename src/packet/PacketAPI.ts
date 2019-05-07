@@ -48,6 +48,7 @@ import { ReqGetGroupNotice, ResGetGroupNotice } from './_api/get_group_notice'
 import { ReqGetVIPInfo, ResGetVIPInfo } from './_api/get_vip_info'
 import { ReqSendGroupNotice } from './_api/send_group_notice'
 import { ReqSetRestart } from './_api/set_restart'
+import { ResponseBase } from './ResponseBase'
 
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/WebSocketAPI?id=api-接口 CQHTTP#API 接口}
@@ -99,9 +100,7 @@ export type PacketAPIRequest =
 /**
  * No response data, only staus and code are returned.
  */
-export interface PacketAPIResponseEmpty {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface PacketAPIResponseEmpty extends ResponseBase {
   data: null
 }
 

@@ -2,6 +2,7 @@
  * @module packet._api
  */
 
+import { ResponseBase } from '../ResponseBase'
 import { ParamFriendInfoFlatten } from '../ParamFriendInfo'
 import { ParamFriendGroupInfo, ParamFriendGroupInfoFlatten } from '../ParamFriendGroupInfo'
 
@@ -25,18 +26,14 @@ export interface ReqGetFriendListFlatten {
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据36 CQHTTP#获取好友列表-响应数据}
  */
-export interface ResGetFriendList {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResGetFriendList extends ResponseBase {
   data: Array<ParamFriendGroupInfo>
 }
 
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据36 CQHTTP#获取好友列表-响应数据}
  */
-export interface ResGetFriendListFlatten {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResGetFriendListFlatten extends ResponseBase {
   data: {
     friend_groups: Array<ParamFriendGroupInfoFlatten>
     friends: Array<ParamFriendInfoFlatten>

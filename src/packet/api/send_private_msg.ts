@@ -2,6 +2,7 @@
  * @module packet.api
  */
 
+import { ResponseBase } from '../ResponseBase'
 import { ParamAPIMessage } from '../ParamAPIMessage'
 
 /**
@@ -19,9 +20,7 @@ export interface ReqSendPrivateMsg {
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据 CQHTTP#发送私聊消息-响应数据}
  */
-export interface ResSendPrivateMsg {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResSendPrivateMsg extends ResponseBase {
   data: {
     message_id: number
   }

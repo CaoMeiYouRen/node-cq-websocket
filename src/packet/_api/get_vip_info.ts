@@ -2,6 +2,8 @@
  * @module packet._api
  */
 
+import { ResponseBase } from '../ResponseBase'
+
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=_get_vip_info-获取会员信息 CQHTTP#获取会员信息}
  */
@@ -15,9 +17,7 @@ export interface ReqGetVIPInfo {
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据38 CQHTTP#获取会员信息-响应数据}
  */
-export interface ResGetVIPInfo {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResGetVIPInfo extends ResponseBase {
   data: {
     user_id: number
     nickname: string

@@ -2,6 +2,7 @@
  * @module packet.api
  */
 
+import { ResponseBase } from '../ResponseBase'
 import { ParamStatus } from '../ParamStatus'
 
 /**
@@ -14,8 +15,6 @@ export interface ReqGetStatus {
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=响应数据30 CQHTTP#获取插件运行状态-响应数据}
  */
-export interface ResGetStatus {
-  status: 'ok' | 'failed'
-  retcode: number
+export interface ResGetStatus extends ResponseBase {
   data: ParamStatus
 }
