@@ -40,12 +40,16 @@
     "url": "https://github.com/momocow/node-cq-websocket/issues"
   },
   "homepage": "https://github.com/momocow/node-cq-websocket#readme",
-  "dependencies": {},
+  "dependencies": {
+    "@types/nanoid": "^1.2.1",
+    "@types/websocket": "0.0.40",
+    "nanoid": "^2.0.1",
+    "websocket": "^1.0.28"
+  },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
     "@semantic-release/git": "^7.0.8",
     "@semantic-release/release-notes-generator": "^7.1.4",
-    "@types/websocket": "0.0.40",
     "ava": "^1.4.1",
     "chalk": "^2.4.2",
     "commitizen": "^3.0.7",
@@ -70,7 +74,6 @@
     "webpack-cli": "^3.3.0"
   },
   "optionalDependencies": {
-    "websocket": "^1.0.28",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v15.10.0"
   }
 }
