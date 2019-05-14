@@ -17,6 +17,8 @@ export interface TransportConfig {
 }
 
 export interface Transport {
+  readyState: TransportState
+
   close (code?: number, reason?: string): void
   send (payload: string): void
 
