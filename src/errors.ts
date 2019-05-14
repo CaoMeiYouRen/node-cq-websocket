@@ -1,2 +1,3 @@
-export class MessageError extends Error {}
-export class ConnectionError extends Error {}
+export class MessageError extends Error {
+  public readonly name: string = 'MessageError'
+}
