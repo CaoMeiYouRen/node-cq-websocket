@@ -12,7 +12,6 @@ export enum TransportState {
 }
 
 export interface TransportConfig {
-  url: string
   accessToken?: string
 }
 

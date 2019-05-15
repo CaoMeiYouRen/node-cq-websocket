@@ -13,6 +13,10 @@ import {
 import { Transport, TransportState, TransportConfig } from './Transport'
 import { MessageError } from '../errors'
 
+export interface WSNodeConfig extends TransportConfig {
+  url: string
+}
+
 export class TransportWebSocketNode extends EventEmitter implements Transport {
   private _state: TransportState = TransportState.CONNECTING
   private _internal: EventEmitter = new EventEmitter()
@@ -22,7 +26,7 @@ export class TransportWebSocketNode extends EventEmitter implements Transport {
   }
 
   constructor (
-    config: TransportConfig,
+    config: WSNodeConfig,
     wsClientOptions?: IClientConfig,
     requestOptions?: RequestOptions
   ) {
