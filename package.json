@@ -41,9 +41,12 @@
   },
   "homepage": "https://github.com/momocow/node-cq-websocket#readme",
   "dependencies": {
+    "@types/lodash": "^4.14.132",
     "@types/nanoid": "^1.2.1",
     "@types/websocket": "0.0.40",
+    "lodash": "^4.17.11",
     "nanoid": "^2.0.1",
+    "strict-event-emitter-types": "^2.0.0",
     "websocket": "^1.0.28"
   },
   "devDependencies": {
@@ -61,7 +64,7 @@
     "kaomojify-webpack-plugin": "^0.1.1",
     "nyc": "^14.0.0",
     "rimraf": "^2.6.3",
-    "semantic-release": "^15.13.12",
+    "semantic-release": "^15.13.14",
     "semver": "^6.0.0",
     "source-map-support": "^0.5.12",
     "ts-node": "^8.1.0",
