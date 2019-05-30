@@ -32,12 +32,12 @@ async function prepareServer () {
 test('normal usage', async (t) => {
   t.plan(8)
     
-  const { httpServer, wsServer, shutDown } = await prepareServer(bridge)
+  const { httpServer, wsServer, shutDown } = await prepareServer()
   wsServer.on('connect',
     (connection) => connection.on('message',
       (msg) => { // echo
           connection.sendUTF(msg.utf8Data)
-      })).on('close', (code) => {
+      })).on('close', (_, code) => {
         t.is(code, 1000)
       })
 
@@ -84,7 +84,7 @@ test('normal usage', async (t) => {
 test('autoConnect', async (t) => {
   t.plan(2)
 
-  const { httpServer, wsServer, shutDown } = await prepareServer(bridge)
+  const { httpServer, wsServer, shutDown } = await prepareServer()
 
   const { port } = httpServer.address()
   const url = `ws://127.0.0.1:${port}`
