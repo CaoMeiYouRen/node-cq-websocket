@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>APIEmitter | cq-websocket</title>
+	<title>TransportMessage | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,68 +54,54 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/driver.html">driver</a>
+					<a href="transport.html">transport</a>
 				</li>
 				<li>
-					<a href="driver.apiemitter.html">APIEmitter</a>
+					<a href="transport.transportmessage.html">TransportMessage</a>
 				</li>
 			</ul>
-			<h1>Interface APIEmitter</h1>
+			<h1>Module TransportMessage</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">APIEmitter</span>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Methods</h3>
+							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="driver.apiemitter.html#send" class="tsd-kind-icon">send</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="transport.transportmessage.html#assert" class="tsd-kind-icon">assert</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-					<a name="send" class="tsd-anchor"></a>
-					<h3>send</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">send&lt;R&gt;<span class="tsd-signature-symbol">(</span>pkt<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/packet.html#packetapiresponse" class="tsd-signature-type">PacketAPIResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+					<a name="assert" class="tsd-anchor"></a>
+					<h3>assert</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+						<li class="tsd-signature tsd-kind-icon">assert<span class="tsd-signature-symbol">(</span>msg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IMessage</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/ae08551/src/driver/APIEmitter.ts#L8">driver/APIEmitter.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/2d9eafb/src/transport/Transport.ts#L61">transport/Transport.ts:61</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><a href="../modules/packet.html#packetapirequest" class="tsd-signature-type">PacketAPIRequest</a></h4>
-								</li>
-							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>pkt: <span class="tsd-signature-type">R</span></h5>
+									<h5>msg: <span class="tsd-signature-type">IMessage</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../modules/packet.html#packetapiresponse" class="tsd-signature-type">PacketAPIResponse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -128,47 +114,49 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_channel_.html">"<wbr>Channel"</a>
+						<a href="main.html">main</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+						<a href="packet.html">packet</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="packet__api.html">packet._<wbr>api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="packet_api.html">packet.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="packet_event.html">packet.event</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/driver.html">driver</a>
+						<a href="transport.html">transport</a>
+						<ul>
+							<li class="current tsd-kind-module tsd-parent-kind-external-module">
+								<a href="transport.transportmessage.html">Transport<wbr>Message</a>
+							</li>
+						</ul>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/packet.html">packet</a>
+						<a href="transport_rws_node.html">transport.rws.node</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/packet__api.html">packet._<wbr>api</a>
+						<a href="transport_rws_uws.html">transport.rws.uws</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/packet_api.html">packet.api</a>
+						<a href="transport_ws.html">transport.ws</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/packet_event.html">packet.event</a>
+						<a href="transport_ws_browser.html">transport.ws.browser</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="transport_ws_node.html">transport.ws.node</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.apiemitter.html" class="tsd-kind-icon">APIEmitter</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-								<a href="driver.apiemitter.html#send" class="tsd-kind-icon">send</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="after-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.connector.html" class="tsd-kind-icon">Connector</a>
-					</li>
-					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="driver.eventlistener.html" class="tsd-kind-icon">Event<wbr>Listener</a>
+					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="transport.transportmessage.html#assert" class="tsd-kind-icon">assert</a>
 					</li>
 				</ul>
 			</nav>

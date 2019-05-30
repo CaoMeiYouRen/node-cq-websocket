@@ -80,7 +80,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ResGetGroupList</span>
+						<a href="packet.responsebase.html" class="tsd-signature-type">ResponseBase</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">ResGetGroupList</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -91,9 +96,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.resgetgrouplist.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.resgetgrouplist.html#retcode" class="tsd-kind-icon">retcode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="packet_api.resgetgrouplist.html#status" class="tsd-kind-icon">status</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="packet_api.resgetgrouplist.html#data" class="tsd-kind-icon">data</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="packet_api.resgetgrouplist.html#echo" class="tsd-kind-icon">echo</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="packet_api.resgetgrouplist.html#retcode" class="tsd-kind-icon">retcode</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="packet_api.resgetgrouplist.html#status" class="tsd-kind-icon">status</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,33 +107,47 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="data" class="tsd-anchor"></a>
 					<h3>data</h3>
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="packet.paramgroupinfo.html" class="tsd-signature-type">ParamGroupInfo</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
+						<p>Overrides <a href="packet.responsebase.html">ResponseBase</a>.<a href="packet.responsebase.html#data">data</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/ae08551/src/packet/api/get_group_list.ts#L20">packet/api/get_group_list.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/2d9eafb/src/packet/api/get_group_list.ts#L19">packet/api/get_group_list.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="echo" class="tsd-anchor"></a>
+					<h3>echo</h3>
+					<div class="tsd-signature tsd-kind-icon">echo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="packet.responsebase.html">ResponseBase</a>.<a href="packet.responsebase.html#echo">echo</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/2d9eafb/src/packet/ResponseBase.ts#L11">packet/ResponseBase.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="retcode" class="tsd-anchor"></a>
 					<h3>retcode</h3>
 					<div class="tsd-signature tsd-kind-icon">retcode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="packet.responsebase.html">ResponseBase</a>.<a href="packet.responsebase.html#retcode">retcode</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/ae08551/src/packet/api/get_group_list.ts#L19">packet/api/get_group_list.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/2d9eafb/src/packet/ResponseBase.ts#L9">packet/ResponseBase.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="status" class="tsd-anchor"></a>
 					<h3>status</h3>
 					<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"ok"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"failed"</span></div>
 					<aside class="tsd-sources">
+						<p>Inherited from <a href="packet.responsebase.html">ResponseBase</a>.<a href="packet.responsebase.html#status">status</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/ae08551/src/packet/api/get_group_list.ts#L18">packet/api/get_group_list.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/momocow/node-cq-websocket/blob/2d9eafb/src/packet/ResponseBase.ts#L8">packet/ResponseBase.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -140,13 +160,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_channel_.html">"<wbr>Channel"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/driver.html">driver</a>
+						<a href="../modules/main.html">main</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet.html">packet</a>
@@ -160,6 +174,24 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/packet_event.html">packet.event</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport.html">transport</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport_rws_node.html">transport.rws.node</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport_rws_uws.html">transport.rws.uws</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport_ws.html">transport.ws</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport_ws_browser.html">transport.ws.browser</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport_ws_node.html">transport.ws.node</a>
+					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
@@ -169,13 +201,16 @@
 					<li class="current tsd-kind-interface tsd-parent-kind-external-module">
 						<a href="packet_api.resgetgrouplist.html" class="tsd-kind-icon">Res<wbr>Get<wbr>Group<wbr>List</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 								<a href="packet_api.resgetgrouplist.html#data" class="tsd-kind-icon">data</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="packet_api.resgetgrouplist.html#echo" class="tsd-kind-icon">echo</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="packet_api.resgetgrouplist.html#retcode" class="tsd-kind-icon">retcode</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="packet_api.resgetgrouplist.html#status" class="tsd-kind-icon">status</a>
 							</li>
 						</ul>

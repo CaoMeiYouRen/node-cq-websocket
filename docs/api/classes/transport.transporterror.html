@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>driver | cq-websocket</title>
+	<title>TransportError | cq-websocket</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,29 +54,104 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="driver.html">driver</a>
+					<a href="../modules/transport.html">transport</a>
+				</li>
+				<li>
+					<a href="transport.transporterror.html">TransportError</a>
 				</li>
 			</ul>
-			<h1>External module driver</h1>
+			<h1>Class TransportError</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="tsd-signature-type">Error</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">TransportError</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="transport.stateerror.html" class="tsd-signature-type">StateError</a>
+									</li>
+									<li>
+										<a href="transport.connectionerror.html" class="tsd-signature-type">ConnectionError</a>
+									</li>
+									<li>
+										<a href="transport.messageerror.html" class="tsd-signature-type">MessageError</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/driver.apiemitter.html" class="tsd-kind-icon">APIEmitter</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/driver.connector.html" class="tsd-kind-icon">Connector</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/driver.eventlistener.html" class="tsd-kind-icon">Event<wbr>Listener</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="transport.transporterror.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="transport.transporterror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="transport.transporterror.html#stack" class="tsd-kind-icon">stack</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="transport.transporterror.html#error" class="tsd-kind-icon">Error</a></li>
 							</ul>
 						</section>
 					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="message" class="tsd-anchor"></a>
+					<h3>message</h3>
+					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Error.message</p>
+						<ul>
+							<li>Defined in D:/workspace/Other/node-cq-websocket/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:964</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Error.name</p>
+						<ul>
+							<li>Defined in D:/workspace/Other/node-cq-websocket/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:963</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a name="stack" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
+					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Error.stack</p>
+						<p>Overrides Error.stack</p>
+						<ul>
+							<li>Defined in D:/workspace/Other/node-cq-websocket/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:965</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
+					<a name="error" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error</h3>
+					<div class="tsd-signature tsd-kind-icon">Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ErrorConstructor</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in D:/workspace/Other/node-cq-websocket/node_modules/typedoc/node_modules/typescript/lib/lib.es5.d.ts:974</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -87,38 +162,88 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_channel_.html">"<wbr>Channel"</a>
+						<a href="../modules/main.html">main</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_index_.html">"index"</a>
+						<a href="../modules/packet.html">packet</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/packet__api.html">packet._<wbr>api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/packet_api.html">packet.api</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/packet_event.html">packet.event</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="driver.html">driver</a>
+						<a href="../modules/transport.html">transport</a>
+						<ul>
+							<li class=" tsd-kind-module tsd-parent-kind-external-module">
+								<a href="../modules/transport.transportmessage.html">Transport<wbr>Message</a>
+							</li>
+						</ul>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="packet.html">packet</a>
+						<a href="../modules/transport_rws_node.html">transport.rws.node</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="packet__api.html">packet._<wbr>api</a>
+						<a href="../modules/transport_rws_uws.html">transport.rws.uws</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="packet_api.html">packet.api</a>
+						<a href="../modules/transport_ws.html">transport.ws</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="packet_event.html">packet.event</a>
+						<a href="../modules/transport_ws_browser.html">transport.ws.browser</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/transport_ws_node.html">transport.ws.node</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum tsd-parent-kind-external-module">
+						<a href="../enums/transport.transportreadystate.html" class="tsd-kind-icon">Transport<wbr>Ready<wbr>State</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="transport.connectionerror.html" class="tsd-kind-icon">Connection<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="transport.messageerror.html" class="tsd-kind-icon">Message<wbr>Error</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-external-module">
+						<a href="transport.stateerror.html" class="tsd-kind-icon">State<wbr>Error</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+						<a href="transport.transporterror.html" class="tsd-kind-icon">Transport<wbr>Error</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="transport.transporterror.html#message" class="tsd-kind-icon">message</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="transport.transporterror.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+								<a href="transport.transporterror.html#stack" class="tsd-kind-icon">stack</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
+								<a href="transport.transporterror.html#error" class="tsd-kind-icon">Error</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/driver.apiemitter.html" class="tsd-kind-icon">APIEmitter</a>
+						<a href="../interfaces/transport.transport-1.html" class="tsd-kind-icon">Transport</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/driver.connector.html" class="tsd-kind-icon">Connector</a>
+						<a href="../interfaces/transport.transportconfig.html" class="tsd-kind-icon">Transport<wbr>Config</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-						<a href="../interfaces/driver.eventlistener.html" class="tsd-kind-icon">Event<wbr>Listener</a>
+						<a href="../interfaces/transport.transporteventmap.html" class="tsd-kind-icon">Transport<wbr>Event<wbr>Map</a>
 					</li>
 				</ul>
 			</nav>
