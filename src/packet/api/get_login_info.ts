@@ -2,6 +2,8 @@
  * @module packet.api
  */
 
+import { ResponseBase } from '../ResponseBase'
+
 /**
  * @see {@link https://cqhttp.cc/docs/4.10/#/API?id=get_login_info-获取登录号信息 CQHTTP#获取登录号信息}
  */
