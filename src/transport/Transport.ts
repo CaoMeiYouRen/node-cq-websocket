@@ -2,8 +2,6 @@
  * @module transport
  */
 import { strict as _assert } from 'assert'
-import { StrictEventEmitter } from 'strict-event-emitter-types'
-import { EventEmitter } from 'events'
 
 import { StateError, MessageError } from './TransportError'
 import { IMessage } from 'websocket'
@@ -36,6 +34,7 @@ export enum TransportReadyState {
 export namespace TransportReadyState {
   export function toString (readyState: TransportReadyState): ReadableState {
     switch (readyState) {
+      /* tslint:disable:no-unnecessary-qualifier */
       case TransportReadyState.INIT:
         return 'INIT'
       case TransportReadyState.CONNECTING:
@@ -46,6 +45,7 @@ export namespace TransportReadyState {
         return 'CLOSING'
       case TransportReadyState.CLOSED:
         return 'CLOSED'
+      /* tslint:enable:no-unnecessary-qualifier */
     }
   }
 
