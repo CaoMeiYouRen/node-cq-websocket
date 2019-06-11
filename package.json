@@ -64,7 +64,7 @@
     "kaomojify-webpack-plugin": "^0.1.1",
     "nyc": "^14.0.0",
     "rimraf": "^2.6.3",
-    "semantic-release": "^15.13.14",
+    "semantic-release": "^15.13.16",
     "semver": "^6.0.0",
     "source-map-support": "^0.5.12",
     "ts-node": "^8.1.0",
