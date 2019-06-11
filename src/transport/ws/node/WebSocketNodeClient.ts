@@ -24,18 +24,12 @@ export interface WSNodeClientConfig extends WSTransportConfig {
   headers?: Record<string, string>
 }
 
-export const DEFAULT_CONFIG: Partial<WSNodeClientConfig> = {
-  autoConnect: true,
-  clientOptions: {
-    fragmentOutgoingMessages: false
-  },
-  reconnection: true,
-  reconnectionAttempts: Infinity,
-  reconnectionDelay: 1000
+export interface WSNodeClientEventMap extends WSTransportEventMap {
+  readyStateChange (state: TransportReadyState): void
 }
 
 export interface WSNodeClientEventEmitter {
-  new(): StrictEventEmitter<EventEmitter, WSTransportEventMap>
+  new(): StrictEventEmitter<EventEmitter, WSNodeClientEventMap>
 }
 
 export namespace WebSocketNodeClient {
@@ -67,11 +61,11 @@ export namespace WebSocketNodeClient {
 
 export class WebSocketNodeClient extends (EventEmitter as WSNodeClientEventEmitter)
   implements Transport {
-  private state: TransportReadyState = TransportReadyState.INIT
   private lifeCycle: EventEmitter = new EventEmitter()
+  private state: TransportReadyState = TransportReadyState.INIT
   private client?: WebSocketClient
   private connection?: WebSocketConnection
-  private attempts: number = 0
+  private attempts: number = -1
 
   public get readyState () {
     return this.state
@@ -84,10 +78,16 @@ export class WebSocketNodeClient extends (EventEmitter as WSNodeClientEventEmitt
       setImmediate(() => this.open())
     }
     if (_get(this.config, 'reconnection', true)) {
+      const delay = _get(this.config, 'reconnectionDelay', 1000)
+      const maxAttempts = _get(this.config, 'reconnectionAttempts', Infinity)
       this.lifeCycle.on('reconnect', () => {
-        this.attempts++
-        this.emit('reconnect', this.attempts)
-        this.open()
+        if (this.attempts >= maxAttempts) {
+          return
+        }
+        setTimeout(() => {
+          this.emit('reconnect', this.attempts)
+          this.open()
+        }, delay)
       })
     }
   }
@@ -98,47 +98,37 @@ export class WebSocketNodeClient extends (EventEmitter as WSNodeClientEventEmitt
       TransportReadyState.CLOSED
     ])
 
-    this.state = TransportReadyState.CONNECTING
-
-    this.client = new WebSocketClient({
+    const client = new WebSocketClient({
       fragmentOutgoingMessages: false,
       ...this.config.clientOptions
+    }).once('connect', (connection: WebSocketConnection) => {
+      connection.on('message', (msg) => {
+        TransportMessage.assert(msg)
+        this.emit('message', msg.utf8Data || '')
+      }).on('error', (err) => {
+        this.emit('error', new ConnectionError(err))
+      }).on('close', (code, reason) => {
+        this.setState(TransportReadyState.CLOSED)
+        this.emit('close', code, reason)
+        if (code !== 1000) {
+          this.lifeCycle.emit('reconnect')
+        }
+      })
+      this.setState(TransportReadyState.OPEN, connection)
+      this.emit('open')
+    }).once('connectFailed', (err: Error) => {
+      this.setState(TransportReadyState.CLOSED)
+      const connectionError = new ConnectionError(err)
+      this.emit('error', connectionError)
+      this.lifeCycle.emit('reconnect')
     })
-      .once('connect', (connection: WebSocketConnection) => {
-        this.state = TransportReadyState.OPEN
-        this.attempts = 0 // reset
-        this.connection = connection
-          .on('message', (msg) => {
-            TransportMessage.assert(msg)
-            this.emit('message', msg.utf8Data || '')
-          })
-          .on('error', (err) => {
-            this.emit('error', new ConnectionError(err))
-          })
-          .on('close', (code, reason) => {
-            this.state = TransportReadyState.CLOSED
-            this.connection = undefined
-            this.client = undefined
-            this.emit('close', code, reason)
-            if (code !== 1000) {
-              this.lifeCycle.emit('reconnect')
-            }
-          })
-        this.emit('open')
-      })
-      .once('connectFailed', (err: Error) => {
-        this.state = TransportReadyState.CLOSED
-        this.connection = undefined
-        this.client = undefined
-        const connectionError = new ConnectionError(err)
-        this.emit('error', connectionError)
-        this.lifeCycle.emit('reconnect')
-      })
+
+    this.setState(TransportReadyState.CONNECTING, client)
 
     const authHeaders = typeof this.config.accessToken !== 'string' ? {}
       : { Authorization: `Bearer ${this.config.accessToken}` }
 
-    this.client.connect(this.config.url, undefined, undefined,
+    client.connect(this.config.url, undefined, undefined,
       { ...authHeaders, ...this.config.headers }, this.config.requestOptions)
   }
 
@@ -152,11 +142,42 @@ export class WebSocketNodeClient extends (EventEmitter as WSNodeClientEventEmitt
 
   public close (code?: number | undefined, reason?: string | undefined): void {
     TransportReadyState.assert(this.state, [
-      TransportReadyState.OPEN
+      TransportReadyState.OPEN,
+      TransportReadyState.CONNECTING
     ])
 
-    this.state = TransportReadyState.CLOSING
-    const connection = this.connection as WebSocketConnection
-    connection.close(code, reason)
+    if (this.state === TransportReadyState.CONNECTING) {
+      // abort
+      const client = this.client as WebSocketClient
+      client.abort()
+      this.setState(TransportReadyState.CLOSED)
+    } else if (this.state === TransportReadyState.OPEN) {
+      const connection = this.connection as WebSocketConnection
+      connection.close(code, reason)
+      this.setState(TransportReadyState.CLOSING)
+    }
+  }
+
+  private setState (state: TransportReadyState, payload?: any): void {
+    this.state = state
+    switch (state) {
+      case TransportReadyState.CONNECTING:
+        this.client = payload as WebSocketClient
+        this.attempts++
+        break
+      case TransportReadyState.OPEN:
+        this.connection = payload as WebSocketConnection
+        this.attempts = -1 // reset
+        break
+      case TransportReadyState.CLOSING:
+        this.client = undefined
+        break
+      case TransportReadyState.CLOSED:
+        this.connection = undefined
+        // for the case that the connection is closed by the server
+        this.client = undefined
+        break
+    }
+    this.emit('readyStateChange', state)
   }
 }
