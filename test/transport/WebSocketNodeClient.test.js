@@ -3,7 +3,6 @@ import _last from 'lodash/last'
 import { createServer } from 'http'
 import { server as WebSocketServer } from 'websocket'
 
-import { WebSocketNodeClient } from '../../src/transport/ws/node/WebSocketNodeClient'
 import { TransportReadyState } from '../../src/transport/Transport'
 
 async function prepareServer () {
@@ -103,4 +102,24 @@ test('autoConnect', async (t) => {
   await shutDown()
 })
 
-test.todo('reconnection')
+test.cb('reconnection', (t) => {
+  t.plan(2)
+  const client = new WebSocketNodeClient({
+    url: `ws://127.0.0.1:5700`,
+    reconnectionAttempts: 3,
+    reconnectionDelay: 500
+  })
+  client.on('error', (err) => { /* or the error will be thrown */ })
+  const attemptNums = []
+  client.on('reconnect', (attempt) => {
+    attemptNums.push(attempt)
+  })
+  client.on('readyStateChange', (state) => {
+    console.log(state, new Date())
+  })
+  setTimeout(() => {
+    t.is(attemptNums.length, 3)
+    t.deepEqual(attemptNums, [ 0, 1, 2 ])
+    t.end()
+  }, 5000) // (1000 (http request timeout) + 500 (reconnection delay)) * 3
+})
