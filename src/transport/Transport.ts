@@ -1,64 +1,29 @@
 /**
  * @module transport
  */
-import { strict as _assert } from 'assert'
-
-import { StateError, MessageError } from './TransportError'
-import { IMessage } from 'websocket'
-
-export interface TransportConfig {
-  accessToken?: string
-}
+import { StrictEventEmitter } from 'strict-event-emitter-types'
+import { EventEmitter } from 'events'
 
 export interface TransportEventMap {
-  open (): void
-  close (code: number, reason: string): void
   message (msg: string): void
   error (err: Error): void
 }
 
-export interface Transport {
-  readonly readyState: TransportReadyState
-  send (payload: string): void
-  close (code?: number, reason?: string): void
+export interface TransportEventEmitter {
+  new(): StrictEventEmitter<EventEmitter, TransportEventMap>
 }
 
-export enum TransportReadyState {
-  INIT = -1,
-  CONNECTING,
-  OPEN,
-  CLOSING,
-  CLOSED
+export abstract class Transport extends (EventEmitter as TransportEventEmitter) {
+  abstract send (payload: string): void
 }
 
-export namespace TransportReadyState {
-  export function toString (readyState: TransportReadyState): ReadableState {
-    switch (readyState) {
-      /* tslint:disable:no-unnecessary-qualifier */
-      case TransportReadyState.INIT:
-        return 'INIT'
-      case TransportReadyState.CONNECTING:
-        return 'CONNECTING'
-      case TransportReadyState.OPEN:
-        return 'OPEN'
-      case TransportReadyState.CLOSING:
-        return 'CLOSING'
-      case TransportReadyState.CLOSED:
-        return 'CLOSED'
-      /* tslint:enable:no-unnecessary-qualifier */
-    }
-  }
+export abstract class WSTransport extends Transport {
 
-  export type ReadableState = 'INIT' | 'CONNECTING' | 'OPEN' | 'CLOSING' | 'CLOSED'
-
-  export function assert (current: TransportReadyState,
-    expected: TransportReadyState[]) {
-    _assert(expected.includes(current), new StateError(current, expected))
-  }
 }
 
-export namespace TransportMessage {
-  export function assert (msg: IMessage) {
-    _assert(msg.type === 'utf8', new MessageError(`unexpected non-utf8 message`))
-  }
+export abstract class RWSTransport extends Transport {
+
+}
+
+export abstract class HTTPTransport extends Transport {
 }
