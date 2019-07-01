@@ -11,7 +11,7 @@
     "commit": "git-cz",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "build": "tsc",
-    "clean": "rimraf src/**/*.d.ts src/**/*.js .dist",
+    "clean": "rimraf \"src/**/*.d.ts\" \"src/**/!(*.spec).js\" \".dist\"",
     "webpack": "webpack",
     "release": "semantic-release",
     "test": "env-cmd ./test.env nyc ava test/**/*.test.js",
