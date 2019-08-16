@@ -2,54 +2,36 @@ import { client as WebSocketClient } from 'websocket'
 import { EventEmitter } from 'events'
 
 import {
-  WebSocketBase,
-  APIWebSocket,
-  EventWebSocket,
-  UniversalWebSocket,
-  APIResponse,
-  APIRequestOptions
-} from '../defs'
-import { Payload, Nullable } from '../utils'
+  BaseSocket,
+  Emitter,
+  Listener,
+  Socket,
+  EmitterRequest,
+  EmitterResponse,
+  EmitterRequestOptions
+} from '../typedef'
+import { ConnectionOptions, CQHTTPOptions } from '../typedef/options'
+import { Payload } from '../utils'
 
-export interface CQWebSocketOptions {
-  url: Nullable<string>
-  protocol: 'ws' | 'wss'
-  host: string
-  port: number
-  path: string
-  accessToken: Nullable<string>
-}
-
-export class CQWebSocketBase extends EventEmitter implements WebSocketBase {
-  private _options: CQWebSocketOptions = {
-    url: null,
-    protocol: 'ws',
-    host: '127.0.0.1',
-    port: 6700,
-    path: '/',
-    accessToken: null
-  }
-
-  public constructor (options?: Partial<CQWebSocketOptions>) {
-    super()
-  }
-}
-
-export class CQAPIWebSocket extends CQWebSocketBase implements APIWebSocket {
+export class CQAPIWebSocket extends CQWebSocketBase implements Emitter {
   public async send <P extends Payload, E = number> (
-    action: string, options?: Partial<APIRequestOptions<E>>
-  ): Promise<APIResponse<P>> {
+    action: string,
+    params: EmitterRequest,
+    options?: Partial<EmitterRequestOptions<E>>
+  ): Promise<EmitterResponse<P>> {
 
   }
 }
 
-export class CQEventWebSocket extends (CQWebSocketBase as new () => EventWebSocket) {
+export class CQEventWebSocket extends (CQWebSocketBase as new () => Listener) {
 }
 
-export class CQWebSocket extends (CQAPIWebSocket as new () => UniversalWebSocket) {
+export class CQWebSocket extends (CQAPIWebSocket as new () => Socket) {
   public async send <P extends Payload, E = number> (
-    action: string, options?: Partial<APIRequestOptions<E>>
-  ): Promise<APIResponse<P>> {
+    action: string,
+    params: EmitterRequest,
+    options?: Partial<EmitterRequestOptions<E>>
+  ): Promise<EmitterResponse<P>> {
 
   }
 }
