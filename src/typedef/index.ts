@@ -1,17 +1,5 @@
 import { TypedEventEmitter, Payload, Nullable } from '../utils'
 
-export interface BaseEvents {
-  open (): void
-  close (code: number, reason: string): void
-  error (err: Error): void
-}
-
-export interface ListenerEvents {
-  message (ctx: Payload): void
-}
-
-export type EmitterEvents = BaseEvents
-
 export interface EmitterRequestOptions<E> {
   echo: E
   timeout: number
