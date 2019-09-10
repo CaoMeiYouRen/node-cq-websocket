@@ -1,4 +1,9 @@
-interface SimpleEventEmitter<M> {
+/**
+ * @internal
+ */
+type SimpleArguments<T> = T extends (...args: infer P) => any ? P : never
+
+export interface SimpleEventEmitter<M> {
   on<E extends keyof M> (event: E, listener: M[E]): this
   addListener<E extends keyof M> (event: E, listener: M[E]): this
   prependListener<E extends keyof M> (event: E, listener: M[E]): this
@@ -8,6 +13,11 @@ interface SimpleEventEmitter<M> {
 
   removeListener<E extends keyof M> (event: E, listener: M[E]): this
   removeAllListeners<E extends keyof M> (event?: E): this
+
+  /**
+   * @internal
+   */
+  emit <E extends keyof M> (event: E, ...args: SimpleArguments<M[E]>): boolean
 }
 
 export interface ConnectionEvents {
@@ -17,20 +27,20 @@ export interface ConnectionEvents {
 
 export type ConnectionEventEmitter = new () => SimpleEventEmitter<ConnectionEvents>
 
-export interface EventConnectionEvents extends ConnectionEvents {
+export interface ReadableConnectionEvents extends ConnectionEvents {
   message (payload: Record<string, any>): void
 }
 
-export type EventConnectionEventEmitter = new () => SimpleEventEmitter<EventConnectionEvents>
+export type ReadableConnectionEventEmitter = new () => SimpleEventEmitter<ReadableConnectionEvents>
 
-export interface APIConnectionEvents extends ConnectionEvents {
+export interface WritableConnectionEvents extends ConnectionEvents {
   response (payload: Record<string, any>): void
 }
 
-export type APIConnectionEventEmitter = new () => SimpleEventEmitter<APIConnectionEvents>
+export type WritableConnectionEventEmitter = new () => SimpleEventEmitter<WritableConnectionEvents>
 
-export interface UniversalConnectionEvents
-  extends EventConnectionEvents, APIConnectionEvents {
+export interface DuplexConnectionEvents
+  extends ReadableConnectionEvents, WritableConnectionEvents {
 }
 
-export type UniversalConnectionEventEmitter = new () => SimpleEventEmitter<UniversalConnectionEvents>
+export type DuplexConnectionEventEmitter = new () => SimpleEventEmitter<DuplexConnectionEvents>
