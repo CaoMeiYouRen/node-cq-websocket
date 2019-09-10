@@ -1,14 +1,36 @@
 import { EventEmitter } from 'events'
 
 import debug from '../debug'
-import { ConnectionEventEmitter } from '../events'
+import { SimpleArguments } from '../events'
 import { DriverError } from '../errors'
 
 export interface ConnectionInfo {
   url: string
 }
 
-export class Connection extends (EventEmitter as ConnectionEventEmitter) {
+export interface ConnectionEvents {
+  close (code: number, reason: string): void
+  error (err: Error): void
+}
+
+export declare interface Connection {
+  on<E extends keyof ConnectionEvents> (event: E, listener: ConnectionEvents[E]): this
+  addListener<E extends keyof ConnectionEvents> (event: E, listener: ConnectionEvents[E]): this
+  prependListener<E extends keyof ConnectionEvents> (event: E, listener: ConnectionEvents[E]): this
+
+  once<E extends keyof ConnectionEvents> (event: E, listener: ConnectionEvents[E]): this
+  prependOnceListener<E extends keyof ConnectionEvents> (event: E, listener: ConnectionEvents[E]): this
+
+  removeListener<E extends keyof ConnectionEvents> (event: E, listener: ConnectionEvents[E]): this
+  removeAllListeners<E extends keyof ConnectionEvents> (event?: E): this
+
+  /**
+   * @internal
+   */
+  emit <E extends keyof ConnectionEvents> (event: E, ...args: SimpleArguments<ConnectionEvents[E]>): boolean
+}
+
+export class Connection extends EventEmitter {
   private _openedAt: Date = new Date()
   private _closedAt?: Date
 
