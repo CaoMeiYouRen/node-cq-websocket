@@ -1,11 +1,17 @@
 import { EventEmitter } from 'events'
 
-import { main as debug } from '../debug'
+import { main as debug, msg as msgDebug } from '../debug'
+import { parseMessage } from '../utils'
+import { MessageError } from '../errors'
 
 export interface WebSocketLike extends EventEmitter {
   emit (event: 'message', msg: string): boolean
   emit (event: 'close', code: number, reason: string): boolean
   emit (event: 'error', err: Error): boolean
+  /**
+   * @internal
+   */
+  emit (event: string|Symbol, ...args: any[]): boolean
   send (msg: string): void
   close (code?: number, reason?: string): void
 }
@@ -36,7 +42,8 @@ export declare interface Connection {
   emit (event: string, ...args: any[]): boolean
 }
 
-export class Connection extends EventEmitter {
+export abstract class Connection extends EventEmitter {
+  protected static MESSAGE_PARSE = Symbol('message_parse')
   private _openedAt: Date = new Date()
   private _closedAt?: Date
   private _closeCode?: number
@@ -55,6 +62,23 @@ export class Connection extends EventEmitter {
     this._proxy.on('error', (err: Error) => {
       debug('connection error: %s', err)
       this.emit('error', err)
+    })
+    this._proxy.on('message', (msg: string) => {
+      msgDebug('recv: %s', msg)
+      this.emit('data', msg)
+      let payload: Record<string, any>
+      try {
+        payload = parseMessage(msg)
+      } catch (err) {
+        this.emit('error', err)
+        return
+      }
+      if (typeof payload !== 'object') {
+        const msgError = new MessageError(msg, 'the payload is not a JSON object')
+        this.emit('error', msgError)
+        return
+      }
+      this._proxy.emit(Connection.MESSAGE_PARSE, payload)
     })
     debug('connection opened')
   }

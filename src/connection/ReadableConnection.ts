@@ -1,9 +1,9 @@
 import pTimeout from 'p-timeout'
 
 import { Connection, ConnectionEvents, ConnectionInfo, WebSocketLike } from './Connection'
-import { MessageError, TimeoutError, ConnectionError } from '../errors'
-import { msg as msgDebug, main as debug } from '../debug'
-import { isEventPayload, parseMessage } from '../utils'
+import { TimeoutError, ConnectionError } from '../errors'
+import { main as debug } from '../debug'
+import { isEventPayload } from '../utils'
 
 export interface ReadableConnectionEvents extends ConnectionEvents {
   message (payload: Record<string, any>): void
@@ -33,22 +33,8 @@ export declare interface ReadableConnection {
 export class ReadableConnection extends Connection {
   public constructor (proxy: WebSocketLike, info: ConnectionInfo) {
     super(proxy, info)
-    this._proxy.on('message', (msg: string) => {
-      msgDebug('recv: %s', msg)
-      let payload: Record<string, any>
-      try {
-        payload = parseMessage(msg)
-      } catch (err) {
-        this.emit('error', err)
-        return
-      }
-      if (typeof payload !== 'object') {
-        const msgError = new MessageError(msg, 'the payload is not a JSON object')
-        this.emit('error', msgError)
-        return
-      }
+    this._proxy.on(Connection.MESSAGE_PARSE, (payload: Record<string, any>) => {
       if (isEventPayload(payload)) {
-        this.emit('_message_parse', payload)
         this.emit('message', payload)
       }
     })

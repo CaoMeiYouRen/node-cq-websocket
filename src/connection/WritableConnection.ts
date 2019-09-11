@@ -1,5 +1,5 @@
 import { Connection, ConnectionEvents, ConnectionInfo, WebSocketLike } from './Connection'
-import { isAPIResponse, parseMessage } from '../utils'
+import { isAPIResponse } from '../utils'
 
 export interface WritableConnectionEvents extends ConnectionEvents {
   response (payload: Record<string, any>): void
@@ -25,15 +25,10 @@ export declare interface WritableConnection {
 export class WritableConnection extends Connection {
   public constructor (proxy: WebSocketLike, info: ConnectionInfo) {
     super(proxy, info)
-    this._proxy.on('message', (msg: string) => {
-      // let payload: Record<string, any>
-      // try {
-      //   payload = parseMessage(msg)
-      // } catch (err) {
-      //   this.emit('error', err)
-      //   return
-      // }
-      // isAPIResponse(payload)
+    this._proxy.on(Connection.MESSAGE_PARSE, (payload: Record<string, any>) => {
+      if (isAPIResponse(payload)) {
+        this.emit('response', payload)
+      }
     })
   }
 }

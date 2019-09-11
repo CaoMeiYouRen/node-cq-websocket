@@ -1,10 +1,10 @@
 import { MessageError } from './errors'
 
-export function isEventPayload (obj: any): boolean {
+export function isEventPayload (obj: any): obj is Record<string, any> {
   return typeof obj === 'object' && typeof obj.post_type === 'string'
 }
 
-export function isAPIResponse (obj: any): boolean {
+export function isAPIResponse (obj: any): obj is Record<string, any> {
   return typeof obj === 'object' && typeof obj.retcode === 'number' && typeof obj.echo !== 'undefined'
 }
 
