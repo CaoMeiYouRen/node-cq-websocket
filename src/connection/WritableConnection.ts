@@ -1,5 +1,5 @@
-import { Connection, ConnectionEvents } from './Connection'
-import { SimpleArguments } from '../events'
+import { Connection, ConnectionEvents, ConnectionInfo, WebSocketLike } from './Connection'
+import { isAPIResponse, parseMessage } from '../utils'
 
 export interface WritableConnectionEvents extends ConnectionEvents {
   response (payload: Record<string, any>): void
@@ -19,9 +19,21 @@ export declare interface WritableConnection {
   /**
    * @internal
    */
-  emit <E extends keyof WritableConnectionEvents> (event: E, ...args: SimpleArguments<WritableConnectionEvents[E]>): boolean
+  emit (event: string, ...args: any[]): boolean
 }
 
 export class WritableConnection extends Connection {
-
+  public constructor (proxy: WebSocketLike, info: ConnectionInfo) {
+    super(proxy, info)
+    this._proxy.on('message', (msg: string) => {
+      // let payload: Record<string, any>
+      // try {
+      //   payload = parseMessage(msg)
+      // } catch (err) {
+      //   this.emit('error', err)
+      //   return
+      // }
+      // isAPIResponse(payload)
+    })
+  }
 }

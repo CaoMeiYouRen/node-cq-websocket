@@ -1,8 +1,14 @@
 import { EventEmitter } from 'events'
 
-import debug from '../debug'
-import { SimpleArguments } from '../events'
-import { DriverError } from '../errors'
+import { main as debug } from '../debug'
+
+export interface WebSocketLike extends EventEmitter {
+  emit (event: 'message', msg: string): boolean
+  emit (event: 'close', code: number, reason: string): boolean
+  emit (event: 'error', err: Error): boolean
+  send (msg: string): void
+  close (code?: number, reason?: string): void
+}
 
 export interface ConnectionInfo {
   url: string
@@ -27,42 +33,49 @@ export declare interface Connection {
   /**
    * @internal
    */
-  emit <E extends keyof ConnectionEvents> (event: E, ...args: SimpleArguments<ConnectionEvents[E]>): boolean
+  emit (event: string, ...args: any[]): boolean
 }
 
 export class Connection extends EventEmitter {
   private _openedAt: Date = new Date()
   private _closedAt?: Date
+  private _closeCode?: number
+  private _closeReason?: string
 
-  public constructor (
-    protected _proxy: EventEmitter,
-    public info: ConnectionInfo
-  ) {
+  public constructor (protected _proxy: WebSocketLike, public info: ConnectionInfo) {
     super() // eslint-disable-line constructor-super
     this._proxy.on('close', (code: number, reason: string) => {
-      debug('Connection: event "close": %O', { code, reason })
+      debug('connection closed: %d %s', code, reason)
       this._closedAt = new Date()
+      this._closeCode = code
+      this._closeReason = reason
       this._proxy.removeAllListeners()
       this.emit('close', code, reason)
     })
     this._proxy.on('error', (err: Error) => {
-      debug('Connection: event "error": %O', err)
+      debug('connection error: %s', err)
       this.emit('error', err)
     })
+    debug('connection opened')
   }
 
-  public async close (
-    code: number = 1000, reason: string = 'normal closure'
-  ): Promise<{code: number, reason: string}> {
-    return new Promise((resolve, reject) => {
+  public async close (code: number = 1000, reason: string = 'normal closure'): Promise<{code: number, reason: string}> {
+    debug('connection#close()')
+
+    if (this.closed) {
+      debug('connection already closed')
+      return Promise.resolve({
+        code: this._closeCode as number,
+        reason: this._closeReason as string
+      })
+    }
+
+    debug('connection closing')
+    return new Promise((resolve) => {
       this._proxy.once('close', (code: number, reason: string) => {
-        debug('Connection: close promise resolved')
         resolve({ code, reason })
       })
-      const emission = this._proxy.emit('close()', code, reason)
-      if (!emission) {
-        reject(new DriverError('close() is not implemented'))
-      }
+      this._proxy.close(code, reason)
     })
   }
 
@@ -78,7 +91,15 @@ export class Connection extends EventEmitter {
     return this._closedAt
   }
 
+  public get closeCode (): number | undefined {
+    return this._closeCode
+  }
+
+  public get closeReason (): string | undefined {
+    return this._closeReason
+  }
+
   public get closed (): boolean {
-    return typeof this._closedAt !== 'undefined'
+    return typeof this._closeCode !== 'number'
   }
 }
