@@ -1,16 +1,22 @@
 import pTimeout from 'p-timeout'
 
-import { Connection, ConnectionEvents, ConnectionInfo, WebSocketLike } from './Connection'
+import {
+  Connection,
+  ConnectionEvents,
+  WebSocketLike,
+  EVENT_MESSAGE_PARSE,
+  EVENT_CONNECTION_CLOSE
+} from './Connection'
 import { TimeoutError, ConnectionError } from '../errors'
 import { main as debug } from '../debug'
-import { isEventPayload } from '../utils'
+
+/**
+ * @internal
+ */
+export const EVENT_PAYLOAD = Symbol('internal payload event')
 
 export interface ReadableConnectionEvents extends ConnectionEvents {
   message (payload: Record<string, any>): void
-}
-
-export interface ReadableConnectionOptions {
-  readTimeout: number
 }
 
 export declare interface ReadableConnection {
@@ -27,34 +33,44 @@ export declare interface ReadableConnection {
   /**
    * @internal
    */
-  emit (event: string, ...args: any[]): boolean
+  emit<E extends keyof ReadableConnectionEvents> (event: E, ...args: any[]): boolean
 }
 
 export class ReadableConnection extends Connection {
-  public constructor (proxy: WebSocketLike, info: ConnectionInfo) {
-    super(proxy, info)
-    this._proxy.on(Connection.MESSAGE_PARSE, (payload: Record<string, any>) => {
-      if (isEventPayload(payload)) {
-        this.emit('message', payload)
-      }
+  public constructor (socket: WebSocketLike) {
+    super(socket)
+    this._internal.on(EVENT_MESSAGE_PARSE, (payload) => {
+      this.handlePayload(payload)
     })
   }
 
-  public async recv (timeout: number = 30000): Promise<Record<string, any>> {
+  public async recv (timeout: number = Infinity): Promise<Record<string, any>> {
     debug('connection#recv()')
 
-    if (this.closed) {
-      debug('connection already closed')
-      return Promise.reject(new ConnectionError('connection already closed'))
-    }
+    const recvPromise = new Promise<Record<string, any>>((resolve, reject) => {
+      if (this.closed) {
+        debug('connection already closed')
+        return reject(new ConnectionError('connection already closed'))
+      }
+      this._internal.once(EVENT_PAYLOAD, resolve)
+      this._internal.once(EVENT_CONNECTION_CLOSE,
+        () => reject(new ConnectionError('connection closed')))
+    })
 
-    return pTimeout(
-      new Promise((resolve, reject) => {
-        this._proxy.once('_message_parse', resolve)
-        this._proxy.once('close', () => reject(new ConnectionError('connection closed')))
-      }),
-      timeout,
-      new TimeoutError(timeout, 'read timeout occurred')
-    )
+    return !isFinite(timeout) ? recvPromise
+      : pTimeout(recvPromise, timeout,
+        new TimeoutError(timeout, 'read timeout'))
+  }
+
+  /**
+   * @internal
+   */
+  public handlePayload (payload: Record<string, any>): boolean {
+    if (typeof payload.post_type === 'string') {
+      this._internal.emit(EVENT_PAYLOAD, payload)
+      this.emit('message', payload)
+      return true
+    }
+    return false
   }
 }
