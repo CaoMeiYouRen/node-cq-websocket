@@ -3,16 +3,6 @@ import { EventEmitter } from 'events'
 import { main as debug, msg as msgDebug } from '../debug'
 import { MessageError } from '../errors'
 
-/**
- * @internal
- */
-export const EVENT_MESSAGE_PARSE = Symbol('message parse event')
-
-/**
- * @internal
- */
-export const EVENT_CONNECTION_CLOSE = Symbol('connection close event')
-
 export interface WebSocketLike {
   url: string
   close (code?: number, reason?: string): void
@@ -48,7 +38,8 @@ export abstract class Connection extends EventEmitter {
   private _closedAt?: Date
   private _closeCode?: number
   private _closeReason?: string
-  protected _internal: EventEmitter = new EventEmitter()
+  protected _messagePipeline: Array<(...args: any[]) => any> = []
+  protected _closeHandlers: Array<(code: number, reason: string) => void> = []
 
   public constructor (protected _socket: WebSocketLike) {
     super()
@@ -66,7 +57,8 @@ export abstract class Connection extends EventEmitter {
       }
 
       debug('connection closing')
-      this._internal.once(EVENT_CONNECTION_CLOSE, (code: number, reason: string) => {
+      this._closeHandlers.push((code: number, reason: string) => {
+        debug('connection#close() resolved')
         resolve({ code, reason })
       })
       this._socket.close(code, reason)
@@ -98,11 +90,13 @@ export abstract class Connection extends EventEmitter {
   }
 
   /**
+   * called by socket implementations to emit messages
    * @internal
    */
   public handleMessage (msg: string): void {
-    msgDebug('recv: %s', msg)
+    msgDebug('recv data: %O', msg)
     this.emit('data', msg)
+
     let payload: Record<string, any>
     try {
       /**
@@ -117,14 +111,22 @@ export abstract class Connection extends EventEmitter {
       return
     }
     if (typeof payload !== 'object') {
-      const msgError = new MessageError(msg, 'the payload is not a JSON object')
-      this.emit('error', msgError)
+      this.emit('error', new MessageError(msg, 'the payload is not a JSON object'))
       return
     }
-    this._internal.emit(EVENT_MESSAGE_PARSE, payload)
+
+    let currentValue = payload
+    for (const step of this._messagePipeline) {
+      currentValue = step(currentValue)
+      if (!currentValue) break
+    }
+    if (currentValue) {
+      this.emit('error', new MessageError(msg, 'unexpected payload'))
+    }
   }
 
   /**
+   * called by socket implementations to emit closes
    * @internal
    */
   public handleClose (code: number, reason: string): void {
@@ -133,14 +135,16 @@ export abstract class Connection extends EventEmitter {
     this._closedAt = new Date()
     this._closeCode = code
     this._closeReason = reason
-    this._internal.emit(EVENT_CONNECTION_CLOSE, code, reason)
-    this.emit('close', code, reason)
 
-    // clean up
-    this._internal.removeAllListeners()
+    for (const handler of this._closeHandlers) {
+      handler(code, reason)
+    }
+    this._closeHandlers = []
+    this.emit('close', code, reason)
   }
 
   /**
+   * called by socket implementations to emit errors
    * @internal
    */
   public handleError (error: Error): void {

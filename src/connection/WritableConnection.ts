@@ -1,61 +1,54 @@
 import pTimeout from 'p-timeout'
+import nanoid from 'nanoid'
 
-import {
-  Connection,
-  ConnectionEvents,
-  WebSocketLike,
-  EVENT_MESSAGE_PARSE,
-  EVENT_CONNECTION_CLOSE
-} from './Connection'
+import { Connection, WebSocketLike } from './Connection'
 import { main as debug, msg as msgDebug } from '../debug'
-import { TimeoutError, ConnectionError } from '../errors'
-
-/**
- * @internal
- */
-export const EVENT_API_RESPONSE = Symbol('api response event')
-
-export interface WritableConnectionEvents extends ConnectionEvents {
-  response (payload: Record<string, any>): void
-}
-
-export declare interface WritableConnection {
-  on<E extends keyof WritableConnectionEvents> (event: E, listener: WritableConnectionEvents[E]): this
-  addListener<E extends keyof WritableConnectionEvents> (event: E, listener: WritableConnectionEvents[E]): this
-  prependListener<E extends keyof WritableConnectionEvents> (event: E, listener: WritableConnectionEvents[E]): this
-
-  once<E extends keyof WritableConnectionEvents> (event: E, listener: WritableConnectionEvents[E]): this
-  prependOnceListener<E extends keyof WritableConnectionEvents> (event: E, listener: WritableConnectionEvents[E]): this
-
-  removeListener<E extends keyof WritableConnectionEvents> (event: E, listener: WritableConnectionEvents[E]): this
-  removeAllListeners<E extends keyof WritableConnectionEvents> (event?: E): this
-
-  /**
-   * @internal
-   */
-  emit<E extends keyof WritableConnectionEvents> (event: E, ...args: any[]): boolean
-}
+import { TimeoutError, AbortError, StateError } from '../errors'
 
 export class WritableConnection extends Connection {
+  private _responseHandlerMap: Map<string, (payload: Record<string, any>) => void> = new Map()
+  public requestIdLength?: number
+  public requestIdGenerator?: () => string
+
   public constructor (socket: WebSocketLike) {
     super(socket)
-    this._internal.on(EVENT_MESSAGE_PARSE, (payload: Record<string, any>) => {
-      this.handlePayload(payload)
+    this._messagePipeline.push((payload: Record<string, any>) => {
+      if (!('retcode' in payload) || typeof payload.echo !== 'string') {
+        return payload
+      }
+      const echo = payload.echo
+      const handler = this._responseHandlerMap.get(echo)
+      if (!handler) { return payload }
+
+      msgDebug('recv: %o', payload)
+      delete payload.echo
+      handler(payload)
+      this._responseHandlerMap.delete(echo)
     })
   }
 
   public async send (payload: Record<string, any>, timeout: number = Infinity): Promise<Record<string, any>> {
     debug('connection#send()')
-    msgDebug('send: %O', payload)
+
+    const echo: string = this.requestIdGenerator ? this.requestIdGenerator() : nanoid(this.requestIdLength)
+    const payloadWithId = { ...payload, echo }
 
     const sendPromise = new Promise<Record<string, any>>((resolve, reject) => {
       if (this.closed) {
         debug('connection already closed')
-        return reject(new ConnectionError('connection already closed'))
+        const error = new StateError('send', 'connection already closed')
+        reject(error)
+        return
       }
-      this._internal.once(EVENT_API_RESPONSE, resolve)
-      this._internal.once(EVENT_CONNECTION_CLOSE,
-        () => reject(new ConnectionError('connection closed')))
+      this._responseHandlerMap.set(echo, (response) => {
+        debug('connection#send() resolved')
+        resolve(response)
+      })
+      this._closeHandlers.push(() => {
+        debug('connection#send() rejected')
+        const error = new AbortError('send', 'send action aborted due to connection closed')
+        reject(error)
+      })
 
       /**
        * @todo We have assumed here that
@@ -63,22 +56,19 @@ export class WritableConnection extends Connection {
        * If the support of numbers greater than `2^53 -1` is required,
        * file an issue and the JSON parser will be updated.
        */
-      this._socket.send(JSON.stringify(payload))
+      this._socket.send(JSON.stringify(payloadWithId))
+      msgDebug('send request: %O', payloadWithId)
     })
 
-    return !isFinite(timeout) ? sendPromise
-      : pTimeout(sendPromise, timeout, new TimeoutError(timeout, 'response timeout'))
-  }
-
-  /**
-   * @internal
-   */
-  public handlePayload (payload: Record<string, any>): boolean {
-    if (typeof payload.retcode === 'number' && typeof payload.echo !== 'undefined') {
-      this._internal.emit(EVENT_API_RESPONSE, payload)
-      this.emit('response', payload)
-      return true
+    let response: Record<string, any>
+    try {
+      response = await pTimeout(sendPromise, timeout,
+        new TimeoutError('send', timeout, 'response timeout'))
+    } catch (e) {
+      this.emit('error', e)
+      throw e
     }
-    return false
+
+    return response
   }
 }
