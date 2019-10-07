@@ -66,11 +66,12 @@ test('send(request) after connection closed', async (t) => {
   const errorSpy = spy()
   connection.on('error', errorSpy)
 
-  await t.throwsAsync(() => connection.send({ fake: true }), StateError)
+  const error = await t.throwsAsync(() => connection.send({ fake: true }), StateError)
   t.log(errorSpy.args)
   t.true(errorSpy.calledOnce)
   t.is(errorSpy.firstCall.args.length, 1)
   t.true(errorSpy.firstCall.args[0] instanceof StateError)
+  t.is(errorSpy.firstCall.args[0], error)
   t.is(errorSpy.firstCall.args[0].action, 'send')
 })
 
@@ -85,9 +86,10 @@ test('send(request) while connection closing', async (t) => {
 
   setTimeout(() => socket.close(), 100)
 
-  await t.throwsAsync(() => connection.send({ fake: true }), AbortError)
+  const error = await t.throwsAsync(() => connection.send({ fake: true }), AbortError)
   t.true(errorSpy.calledOnce)
   t.is(errorSpy.firstCall.args.length, 1)
   t.true(errorSpy.firstCall.args[0] instanceof AbortError)
+  t.is(errorSpy.firstCall.args[0], error)
   t.is(errorSpy.firstCall.args[0].action, 'send')
 })
