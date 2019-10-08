@@ -80,7 +80,6 @@ test('send(request) after connection closed', async (t) => {
   connection.on('error', errorSpy)
 
   const error = await t.throwsAsync(() => connection.send({ fake: true }), StateError)
-  t.log(errorSpy.args)
   t.true(errorSpy.calledOnce)
   t.is(errorSpy.firstCall.args.length, 1)
   t.true(errorSpy.firstCall.args[0] instanceof StateError)
