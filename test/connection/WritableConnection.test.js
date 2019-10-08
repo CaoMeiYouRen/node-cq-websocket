@@ -2,7 +2,7 @@ import test from 'ava'
 import { spy } from 'sinon'
 import { omit } from 'lodash'
 
-import { Socket } from './fake-socket'
+import { Socket } from '../helpers/socket'
 
 import { WritableConnection } from '../../src/connection/WritableConnection'
 import {
