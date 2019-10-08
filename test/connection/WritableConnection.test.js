@@ -28,10 +28,16 @@ test('send(request)', async (t) => {
   })
   const connection = socket.createConnection(WritableConnection)
 
+  const dataSpy = spy()
+  connection.on('data', dataSpy)
+
+  const message = { fake: true }
   const startedAt = Date.now()
-  const response = await connection.send({ fake: true })
+  const response = await connection.send(message)
   t.deepEqual(response, expectedResponse)
   t.true(Date.now() - startedAt >= expectedResponseDelay)
+  t.true(dataSpy.calledOnce)
+  t.deepEqual(omit(JSON.parse(dataSpy.getCall(0).lastArg), [ 'echo' ]), expectedResponse)
 })
 
 test('send(request, timeout)', async (t) => {
@@ -48,6 +54,9 @@ test('send(request, timeout)', async (t) => {
   })
   const connection = socket.createConnection(WritableConnection)
 
+  const dataSpy = spy()
+  connection.on('data', dataSpy)
+
   const errorSpy = spy()
   connection.on('error', errorSpy)
 
@@ -56,12 +65,16 @@ test('send(request, timeout)', async (t) => {
   t.is(errorSpy.firstCall.args.length, 1)
   t.true(errorSpy.firstCall.args[0] instanceof TimeoutError)
   t.is(errorSpy.firstCall.args[0].action, 'send')
+  t.false(dataSpy.called)
 })
 
 test('send(request) after connection closed', async (t) => {
   const socket = new Socket()
   const connection = socket.createConnection(WritableConnection)
   socket.close()
+
+  const dataSpy = spy()
+  connection.on('data', dataSpy)
 
   const errorSpy = spy()
   connection.on('error', errorSpy)
@@ -73,6 +86,7 @@ test('send(request) after connection closed', async (t) => {
   t.true(errorSpy.firstCall.args[0] instanceof StateError)
   t.is(errorSpy.firstCall.args[0], error)
   t.is(errorSpy.firstCall.args[0].action, 'send')
+  t.false(dataSpy.called)
 })
 
 test('send(request) while connection closing', async (t) => {
@@ -80,6 +94,9 @@ test('send(request) while connection closing', async (t) => {
     responseDelay: 500
   })
   const connection = socket.createConnection(WritableConnection)
+
+  const dataSpy = spy()
+  connection.on('data', dataSpy)
 
   const errorSpy = spy()
   connection.on('error', errorSpy)
@@ -92,4 +109,5 @@ test('send(request) while connection closing', async (t) => {
   t.true(errorSpy.firstCall.args[0] instanceof AbortError)
   t.is(errorSpy.firstCall.args[0], error)
   t.is(errorSpy.firstCall.args[0].action, 'send')
+  t.false(dataSpy.called)
 })

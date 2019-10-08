@@ -36,4 +36,8 @@ module.exports.Socket = class Socket {
       echo: JSON.parse(msg).echo
     }))
   }
+
+  recv (msg) {
+    this.connection.handleMessage(typeof msg === 'string' ? msg : JSON.stringify(msg))
+  }
 }

@@ -1,7 +1,7 @@
 import test from 'ava'
 import { spy } from 'sinon'
 
-import { Socket } from './fake-socket'
+import { Socket } from '../helpers/socket'
 
 import { Connection } from '../../src/connection/Connection'
 
@@ -41,4 +41,26 @@ test('close(code, reason)', async (t) => {
   t.true(connection.closedAt instanceof Date)
   t.is(connection.closeCode, expectedCloseCode)
   t.is(connection.closeReason, expectedCloseReason)
+})
+
+test('message error', async (t) => {
+  const socket = new Socket()
+  const connection = socket.createConnection(Connection)
+
+  const invalidMessage1 = '{invalid json}'
+  const invalidMessage2 = '123'
+  const invalidMessage3 = '{"invalid": true}'
+
+  const errorSpy = spy()
+  connection.on('error', errorSpy)
+
+  socket.recv(invalidMessage1)
+  socket.recv(invalidMessage2)
+  socket.recv(invalidMessage3)
+
+  t.true(errorSpy.calledThrice)
+  const [[error1], [error2], [error3]] = errorSpy.args
+  t.is(error1.data, invalidMessage1)
+  t.is(error2.data, invalidMessage2)
+  t.is(error3.data, invalidMessage3)
 })
