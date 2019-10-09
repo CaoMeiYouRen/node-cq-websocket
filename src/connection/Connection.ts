@@ -1,7 +1,12 @@
 import { EventEmitter } from 'events'
+import { connection as WebSocketConnection } from 'websocket'
+import pTimeout from 'p-timeout'
 
 import { main as debug, msg as msgDebug } from '../debug'
-import { MessageError } from '../errors'
+import { TimeoutError, MessageError } from '../errors'
+
+export const CLOSE_REASON_NORMAL = WebSocketConnection.CLOSE_REASON_NORMAL
+export const CLOSE_DESCRIPTION_NORMAL = WebSocketConnection.CLOSE_DESCRIPTIONS[CLOSE_REASON_NORMAL]
 
 export interface WebSocketLike {
   url: string
@@ -13,6 +18,12 @@ export interface ConnectionEvents {
   data (msg: string): void
   close (code: number, reason: string): void
   error (err: Error): void
+}
+
+export interface CloseOptions {
+  timeout: number
+  code: number
+  reason: string
 }
 
 export declare interface Connection {
@@ -45,9 +56,37 @@ export abstract class Connection extends EventEmitter {
     super()
   }
 
-  public async close (code: number = 1000, reason?: string): Promise<{code: number, reason: string}> {
+  /* eslint-disable no-dupe-class-members */
+  public close (options?: Partial<CloseOptions>): Promise<{code: number, reason: string}>
+  public close (code?: number, reason?: string, timeout?: number): Promise<{code: number, reason: string}>
+  public async close (
+    arg1?: number | Partial<CloseOptions>,
+    arg2?: string,
+    arg3?: number
+  ): Promise<{code: number, reason: string}> {
+  /* eslint-enable no-dupe-class-members */
     debug('connection#close()')
-    return new Promise((resolve) => {
+
+    const defaultCloseOptions = {
+      timeout: Infinity,
+      code: CLOSE_REASON_NORMAL,
+      reason: CLOSE_DESCRIPTION_NORMAL
+    }
+    let timeout: number = Infinity
+    let code: number = CLOSE_REASON_NORMAL
+    let reason: string = CLOSE_DESCRIPTION_NORMAL
+    if (typeof arg1 === 'object') {
+      const options = Object.assign(defaultCloseOptions, arg1)
+      code = options.code
+      reason = options.reason
+      timeout = options.timeout
+    } else {
+      code = typeof arg1 === 'number' ? arg1 : code
+      reason = typeof arg2 === 'string' ? arg2 : reason
+      timeout = typeof arg3 === 'number' ? arg3 : timeout
+    }
+
+    const closePromise = new Promise<{ code: number, reason: string }>((resolve) => {
       if (this._closed) {
         debug('connection already closed')
         return resolve({
@@ -63,6 +102,17 @@ export abstract class Connection extends EventEmitter {
       })
       this._socket.close(code, reason)
     })
+
+    let closeResult: { code: number, reason: string }
+    try {
+      closeResult = await pTimeout(closePromise, timeout,
+        new TimeoutError('close', timeout, 'close timeout'))
+    } catch (e) {
+      this.emit('error', e)
+      throw e
+    }
+
+    return closeResult
   }
 
   public get url (): string {

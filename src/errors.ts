@@ -1,6 +1,6 @@
 export abstract class CQWebSocketError extends Error { }
 
-export type Action = 'send' | 'recv'
+export type Action = 'send' | 'recv' | 'close'
 
 export class StateError extends CQWebSocketError {
   public readonly name = 'StateError'
