@@ -38,16 +38,7 @@ export class ReadableConnection extends Connection {
   private _messageHandlers: Array<(payload: Record<string, any>) => void> = []
   public constructor (socket: WebSocketLike) {
     super(socket)
-    this._messagePipeline.push((payload: Record<string, any>) => {
-      if (!('post_type' in payload)) return payload
-
-      msgDebug('recv event: %O', payload)
-      for (const handler of this._messageHandlers) {
-        handler(payload)
-      }
-      this._messageHandlers = []
-      this.emit('message', payload)
-    })
+    this._messagePipeline.push((payload) => this._handlePayload(payload))
   }
 
   public async recv (timeout: number = Infinity): Promise<Record<string, any>> {
@@ -81,5 +72,20 @@ export class ReadableConnection extends Connection {
     }
 
     return payload
+  }
+
+  /**
+   * Mainly to be called by DuplexConnection
+   * @internal
+   */
+  public _handlePayload (payload: Record<string, any>): Record<string, any> | undefined {
+    if (!('post_type' in payload)) return payload
+
+    msgDebug('recv event: %O', payload)
+    for (const handler of this._messageHandlers) {
+      handler(payload)
+    }
+    this._messageHandlers = []
+    this.emit('message', payload)
   }
 }

@@ -12,19 +12,7 @@ export class WritableConnection extends Connection {
 
   public constructor (socket: WebSocketLike) {
     super(socket)
-    this._messagePipeline.push((payload: Record<string, any>) => {
-      if (!('retcode' in payload) || typeof payload.echo !== 'string') {
-        return payload
-      }
-      const echo = payload.echo
-      const handler = this._responseHandlerMap.get(echo)
-      if (!handler) { return payload }
-
-      msgDebug('recv: %o', payload)
-      delete payload.echo
-      handler(payload)
-      this._responseHandlerMap.delete(echo)
-    })
+    this._messagePipeline.push((payload) => this._handlePayload(payload))
   }
 
   public async send (payload: Record<string, any>, timeout: number = Infinity): Promise<Record<string, any>> {
@@ -70,5 +58,23 @@ export class WritableConnection extends Connection {
     }
 
     return response
+  }
+
+  /**
+   * Mainly to be called by DuplexConnection
+   * @internal
+   */
+  public _handlePayload (payload: Record<string, any>): Record<string, any> | undefined {
+    if (!('retcode' in payload) || typeof payload.echo !== 'string') {
+      return payload
+    }
+    const echo = payload.echo
+    const handler = this._responseHandlerMap.get(echo)
+    if (!handler) { return payload }
+
+    msgDebug('recv: %o', payload)
+    delete payload.echo
+    handler(payload)
+    this._responseHandlerMap.delete(echo)
   }
 }
