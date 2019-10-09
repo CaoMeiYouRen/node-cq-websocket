@@ -16,15 +16,13 @@ test('send(request)', async (t) => {
   const expectedResponseDelay = mockedResponseDelay
   const expectedResponse = omit(mockedResponse, [ 'echo' ])
 
-  const socket = new Socket({
-    url: mockedURL,
-    responsePayload: mockedResponse,
-    responseDelay: mockedResponseDelay
-  })
+  const socket = new Socket(mockedURL)
   const connection = socket.createConnection(DuplexConnection)
 
   const dataSpy = spy()
   connection.on('data', dataSpy)
+
+  setTimeout(() => socket.ack(mockedResponse), mockedResponseDelay)
 
   const message = { fake: true }
   const startedAt = Date.now()

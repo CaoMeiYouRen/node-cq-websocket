@@ -12,24 +12,21 @@ import {
 } from '../../src/errors'
 
 test('send(request)', async (t) => {
-  const mockedURL = 'ws://fake_url'
   const mockedResponseDelay = 500
   const mockedResponse = {
     retcode: 0
   }
 
   const expectedResponseDelay = mockedResponseDelay
-  const expectedResponse = omit(mockedResponse, [ 'echo' ])
+  const expectedResponse = mockedResponse
 
-  const socket = new Socket({
-    url: mockedURL,
-    responsePayload: mockedResponse,
-    responseDelay: mockedResponseDelay
-  })
+  const socket = new Socket()
   const connection = socket.createConnection(WritableConnection)
 
   const dataSpy = spy()
   connection.on('data', dataSpy)
+
+  setTimeout(() => socket.ack(mockedResponse), mockedResponseDelay)
 
   const message = { fake: true }
   const startedAt = Date.now()
@@ -42,16 +39,8 @@ test('send(request)', async (t) => {
 
 test('send(request, timeout)', async (t) => {
   const mockedURL = 'ws://fake_url'
-  const mockedResponseDelay = 500
-  const mockedResponse = {
-    retcode: 0
-  }
 
-  const socket = new Socket({
-    url: mockedURL,
-    responsePayload: mockedResponse,
-    responseDelay: mockedResponseDelay
-  })
+  const socket = new Socket(mockedURL)
   const connection = socket.createConnection(WritableConnection)
 
   const dataSpy = spy()
@@ -89,9 +78,7 @@ test('send(request) after connection closed', async (t) => {
 })
 
 test('send(request) while connection closing', async (t) => {
-  const socket = new Socket({
-    responseDelay: 500
-  })
+  const socket = new Socket()
   const connection = socket.createConnection(WritableConnection)
 
   const dataSpy = spy()

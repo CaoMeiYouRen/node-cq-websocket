@@ -1,27 +1,17 @@
 module.exports.Socket = class Socket {
-  constructor (options = {}) {
-    this.options = Object.assign({
-      url: 'ws://fake_url',
-      closeDelay: 500,
-      responseDelay: 500,
-      responsePayload: {}
-    }, options)
+  constructor (url = 'ws://fake-url') {
+    this.url = url
+    this.messageQueue = []
   }
 
   createConnection (Clazz) {
     const socket = this
-    const {
-      responseDelay,
-      closeDelay
-    } = socket.options
     this.connection = new Clazz({
-      url: this.options.url,
+      url: this.url,
       send (msg) {
-        setTimeout(() => socket.send(msg), responseDelay)
+        socket.messageQueue.push(msg)
       },
-      close (code, reason) {
-        setTimeout(() => socket.close(code, reason), closeDelay)
-      }
+      close () { }
     })
     return this.connection
   }
@@ -30,14 +20,12 @@ module.exports.Socket = class Socket {
     this.connection.handleClose(code, reason)
   }
 
-  send (msg) {
-    this.connection.handleMessage(JSON.stringify({
-      ...this.options.responsePayload,
-      echo: JSON.parse(msg).echo
-    }))
-  }
-
   recv (msg) {
     this.connection.handleMessage(typeof msg === 'string' ? msg : JSON.stringify(msg))
+  }
+
+  ack (resp = {}) {
+    const request = JSON.parse(this.messageQueue.shift())
+    this.recv({ echo: request.echo, ...resp })
   }
 }
