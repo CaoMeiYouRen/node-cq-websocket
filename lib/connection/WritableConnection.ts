@@ -3,7 +3,7 @@ import nanoid from 'nanoid'
 
 import { Connection, WebSocketLike } from './Connection'
 import { main as debug, msg as msgDebug } from '../debug'
-import { TimeoutError, AbortError, StateError } from '../errors'
+import { Action, TimeoutError, AbortError, StateError } from '../errors'
 
 export class WritableConnection extends Connection {
   private _responseHandlerMap: Map<string, (payload: Record<string, any>) => void> = new Map()
@@ -24,7 +24,7 @@ export class WritableConnection extends Connection {
     const sendPromise = new Promise<Record<string, any>>((resolve, reject) => {
       if (this.closed) {
         debug('connection already closed')
-        const error = new StateError('send', 'connection already closed')
+        const error = new StateError(Action.SEND, 'connection already closed')
         reject(error)
         return
       }
@@ -34,7 +34,7 @@ export class WritableConnection extends Connection {
       })
       this._closeHandlers.push(() => {
         debug('connection#send() rejected')
-        const error = new AbortError('send', 'send action aborted due to connection closed')
+        const error = new AbortError(Action.SEND, 'send action aborted due to connection closed')
         reject(error)
       })
 
@@ -51,7 +51,7 @@ export class WritableConnection extends Connection {
     let response: Record<string, any>
     try {
       response = await pTimeout(sendPromise, timeout,
-        new TimeoutError('send', timeout, 'response timeout'))
+        new TimeoutError(Action.SEND, timeout, 'response timeout'))
     } catch (e) {
       this.emit('error', e)
       throw e

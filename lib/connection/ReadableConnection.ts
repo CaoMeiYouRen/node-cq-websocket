@@ -5,13 +5,8 @@ import {
   ConnectionEvents,
   WebSocketLike
 } from './Connection'
-import { TimeoutError, StateError, AbortError } from '../errors'
+import { Action, TimeoutError, StateError, AbortError } from '../errors'
 import { main as debug, msg as msgDebug } from '../debug'
-
-/**
- * @internal
- */
-export const EVENT_PAYLOAD = Symbol('internal payload event')
 
 export interface ReadableConnectionEvents extends ConnectionEvents {
   message (payload: Record<string, any>): void
@@ -47,7 +42,7 @@ export class ReadableConnection extends Connection {
     const recvPromise = new Promise<Record<string, any>>((resolve, reject) => {
       if (this.closed) {
         debug('connection already closed')
-        const error = new StateError('recv', 'connection already closed')
+        const error = new StateError(Action.RECV, 'connection already closed')
         reject(error)
         return
       }
@@ -57,7 +52,7 @@ export class ReadableConnection extends Connection {
       })
       this._closeHandlers.push(() => {
         debug('connection#recv() rejected')
-        const error = new AbortError('recv', 'recv action aborted due to connection closed')
+        const error = new AbortError(Action.RECV, 'recv action aborted due to connection closed')
         reject(error)
       })
     })
@@ -65,7 +60,7 @@ export class ReadableConnection extends Connection {
     let payload: Record<string, any>
     try {
       payload = await pTimeout(recvPromise, timeout,
-        new TimeoutError('recv', timeout, 'read timeout'))
+        new TimeoutError(Action.RECV, timeout, 'read timeout'))
     } catch (e) {
       this.emit('error', e)
       throw e

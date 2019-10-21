@@ -1,10 +1,12 @@
 import test from 'ava'
 import { spy } from 'sinon'
 
-import { ReadableConnection } from '../../src/connection/ReadableConnection'
-
 import { Socket } from '../helpers/socket'
-import { TimeoutError, StateError, AbortError } from '../../src/errors'
+import {
+  ReadableConnection,
+  TimeoutError,
+  StateError,
+  AbortError } from '../../'
 
 test('recv()', async (t) => {
   const socket = new Socket()

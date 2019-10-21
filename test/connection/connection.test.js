@@ -3,8 +3,10 @@ import { spy } from 'sinon'
 
 import { Socket } from '../helpers/socket'
 
-import { Connection } from '../../src/connection/Connection'
-import { TimeoutError, MessageError } from '../../src/errors'
+import {
+  Connection,
+  TimeoutError,
+  MessageError } from '../../'
 
 test('close(code, reason)', async (t) => {
   const mockedURL = 'ws://fake_url'

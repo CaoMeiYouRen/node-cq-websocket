@@ -2,7 +2,7 @@ import test from 'ava'
 import { spy } from 'sinon'
 import { omit } from 'lodash'
 
-import { DuplexConnection } from '../../src/connection/DuplexConnection'
+import { DuplexConnection } from '../../'
 
 import { Socket } from '../helpers/socket'
 

@@ -4,12 +4,11 @@ import { omit } from 'lodash'
 
 import { Socket } from '../helpers/socket'
 
-import { WritableConnection } from '../../src/connection/WritableConnection'
 import {
+  WritableConnection,
   TimeoutError,
   AbortError,
-  StateError
-} from '../../src/errors'
+  StateError } from '../../'
 
 test('send(request)', async (t) => {
   const mockedResponseDelay = 500

@@ -3,7 +3,7 @@ import { connection as WebSocketConnection } from 'websocket'
 import pTimeout from 'p-timeout'
 
 import { main as debug, msg as msgDebug } from '../debug'
-import { TimeoutError, MessageError } from '../errors'
+import { Action, TimeoutError, MessageError } from '../errors'
 
 export const CLOSE_REASON_NORMAL = WebSocketConnection.CLOSE_REASON_NORMAL
 export const CLOSE_DESCRIPTION_NORMAL = WebSocketConnection.CLOSE_DESCRIPTIONS[CLOSE_REASON_NORMAL]
@@ -106,7 +106,7 @@ export abstract class Connection extends EventEmitter {
     let closeResult: { code: number, reason: string }
     try {
       closeResult = await pTimeout(closePromise, timeout,
-        new TimeoutError('close', timeout, 'close timeout'))
+        new TimeoutError(Action.CLOSE, timeout, 'close timeout'))
     } catch (e) {
       this.emit('error', e)
       throw e
