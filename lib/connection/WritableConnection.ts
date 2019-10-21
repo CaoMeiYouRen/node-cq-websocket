@@ -5,36 +5,51 @@ import { Connection, WebSocketLike } from './Connection'
 import { main as debug, msg as msgDebug } from '../debug'
 import { Action, TimeoutError, AbortError, StateError } from '../errors'
 
+export type EchoGenerator = () => string
+
+export interface WritableConnectionOptions {
+  echo: number | EchoGenerator
+}
+
 export class WritableConnection extends Connection {
   private _responseHandlerMap: Map<string, (payload: Record<string, any>) => void> = new Map()
-  public requestIdLength?: number
-  public requestIdGenerator?: () => string
+  private _generateEcho: EchoGenerator = () => nanoid()
 
-  public constructor (socket: WebSocketLike) {
+  public constructor (
+    socket: WebSocketLike,
+    options: Partial<WritableConnectionOptions> = {}
+  ) {
     super(socket)
-    this._messagePipeline.push((payload) => this._handlePayload(payload))
+    this._addPayloadHandler((payload) => this._handlePayload(payload))
+    this._generateEcho = typeof options.echo === 'number'
+      ? () => nanoid(options.echo as number) : (options.echo || this._generateEcho)
   }
 
-  public async send (payload: Record<string, any>, timeout: number = Infinity): Promise<Record<string, any>> {
+  public async send (
+    payload: Record<string, any>,
+    timeout: number = Infinity
+  ): Promise<Record<string, any>> {
     debug('connection#send()')
 
-    const echo: string = this.requestIdGenerator ? this.requestIdGenerator() : nanoid(this.requestIdLength)
+    const echo = this._generateEcho()
     const payloadWithId = { ...payload, echo }
 
     const sendPromise = new Promise<Record<string, any>>((resolve, reject) => {
       if (this.closed) {
         debug('connection already closed')
-        const error = new StateError(Action.SEND, 'connection already closed')
+        const error = new StateError(Action.SEND,
+          'connection already closed')
         reject(error)
         return
       }
-      this._responseHandlerMap.set(echo, (response) => {
+      this._setResponseHandler(echo, (response) => {
         debug('connection#send() resolved')
         resolve(response)
       })
-      this._closeHandlers.push(() => {
+      this._addCloseHandler(() => {
         debug('connection#send() rejected')
-        const error = new AbortError(Action.SEND, 'send action aborted due to connection closed')
+        const error = new AbortError(Action.SEND,
+          'send action aborted due to connection closed')
         reject(error)
       })
 
@@ -68,13 +83,27 @@ export class WritableConnection extends Connection {
     if (!('retcode' in payload) || typeof payload.echo !== 'string') {
       return payload
     }
-    const echo = payload.echo
-    const handler = this._responseHandlerMap.get(echo)
-    if (!handler) { return payload }
 
-    msgDebug('recv: %o', payload)
+    msgDebug('recv response: %o', payload)
+
+    const echo = payload.echo
     delete payload.echo
-    handler(payload)
-    this._responseHandlerMap.delete(echo)
+
+    if (!this._invokeResponseHandler(echo, payload)) {
+      return payload
+    }
+  }
+
+  private _setResponseHandler (echo: string, handler: (payload: Record<string, any>) => void): void {
+    this._responseHandlerMap.set(echo, handler)
+  }
+
+  private _invokeResponseHandler (echo: string, payload: Record<string, any>): boolean {
+    const handler = this._responseHandlerMap.get(echo)
+    if (handler) {
+      handler(payload)
+      return true
+    }
+    return false
   }
 }

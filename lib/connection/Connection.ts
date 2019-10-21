@@ -49,11 +49,19 @@ export abstract class Connection extends EventEmitter {
   private _closedAt?: Date
   private _closeCode?: number
   private _closeReason?: string
-  protected _messagePipeline: Array<(...args: any[]) => any> = []
-  protected _closeHandlers: Array<(code: number, reason: string) => void> = []
+  private _payloadHandlers: Array<(...args: any[]) => any> = []
+  private _closeHandlers: Array<(code: number, reason: string) => void> = []
 
   public constructor (protected _socket: WebSocketLike) {
     super()
+  }
+
+  protected _addPayloadHandler (handler: (...args: any[]) => any): void {
+    this._payloadHandlers.push(handler)
+  }
+
+  protected _addCloseHandler (handler: (...args: any[]) => any): void {
+    this._closeHandlers.push(handler)
   }
 
   /* eslint-disable no-dupe-class-members */
@@ -96,7 +104,7 @@ export abstract class Connection extends EventEmitter {
       }
 
       debug('connection closing')
-      this._closeHandlers.push((code: number, reason: string) => {
+      this._addCloseHandler((code: number, reason: string) => {
         debug('connection#close() resolved')
         resolve({ code, reason })
       })
@@ -166,7 +174,7 @@ export abstract class Connection extends EventEmitter {
     }
 
     let currentValue = payload
-    for (const step of this._messagePipeline) {
+    for (const step of this._payloadHandlers) {
       currentValue = step(currentValue)
       if (!currentValue) break
     }

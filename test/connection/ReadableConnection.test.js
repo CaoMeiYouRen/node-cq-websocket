@@ -15,6 +15,7 @@ test('recv()', async (t) => {
   const mockedRecvDelay = 100
   const mockedMessage = {
     post_type: 'test',
+    test_type: '',
     test: true
   }
 

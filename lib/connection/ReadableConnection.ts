@@ -31,9 +31,10 @@ export declare interface ReadableConnection {
 
 export class ReadableConnection extends Connection {
   private _messageHandlers: Array<(payload: Record<string, any>) => void> = []
+
   public constructor (socket: WebSocketLike) {
     super(socket)
-    this._messagePipeline.push((payload) => this._handlePayload(payload))
+    this._addPayloadHandler((payload) => this._handlePayload(payload))
   }
 
   public async recv (timeout: number = Infinity): Promise<Record<string, any>> {
@@ -46,12 +47,13 @@ export class ReadableConnection extends Connection {
         reject(error)
         return
       }
-      this._messageHandlers.push((payload) => {
+      this._addMessageHandler((payload) => {
         debug('connection#recv() resolved')
         resolve(payload)
       })
-      this._closeHandlers.push(() => {
+      this._addCloseHandler(() => {
         debug('connection#recv() rejected')
+        this._messageHandlers = []
         const error = new AbortError(Action.RECV, 'recv action aborted due to connection closed')
         reject(error)
       })
@@ -74,13 +76,25 @@ export class ReadableConnection extends Connection {
    * @internal
    */
   public _handlePayload (payload: Record<string, any>): Record<string, any> | undefined {
-    if (!('post_type' in payload)) return payload
+    if (!('post_type' in payload) ||
+      !(`${payload.post_type}_type` in payload)) {
+      return payload
+    }
 
     msgDebug('recv event: %O', payload)
+
+    this._invokeMessageHandlers(payload)
+    this.emit('message', payload)
+  }
+
+  private _addMessageHandler (handler: (payload: Record<string, any>) => void): void {
+    this._messageHandlers.push(handler)
+  }
+
+  private _invokeMessageHandlers (payload: Record<string, any>): void {
     for (const handler of this._messageHandlers) {
       handler(payload)
     }
     this._messageHandlers = []
-    this.emit('message', payload)
   }
 }
