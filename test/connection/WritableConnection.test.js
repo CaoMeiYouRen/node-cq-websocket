@@ -6,9 +6,11 @@ import { Socket } from '../helpers/socket'
 
 import {
   WritableConnection,
+  MessageError,
   TimeoutError,
   AbortError,
-  StateError } from '../../'
+  StateError,
+  UnhandledReponseError } from '../../'
 
 test('send(request)', async (t) => {
   const mockedResponseDelay = 500
@@ -16,7 +18,6 @@ test('send(request)', async (t) => {
     retcode: 0
   }
 
-  const expectedResponseDelay = mockedResponseDelay
   const expectedResponse = mockedResponse
 
   const socket = new Socket()
@@ -28,10 +29,8 @@ test('send(request)', async (t) => {
   setTimeout(() => socket.ack(mockedResponse), mockedResponseDelay)
 
   const message = { fake: true }
-  const startedAt = Date.now()
   const response = await connection.send(message)
   t.deepEqual(response, expectedResponse)
-  t.true(Date.now() - startedAt >= expectedResponseDelay)
   t.true(dataSpy.calledOnce)
   t.deepEqual(omit(JSON.parse(dataSpy.getCall(0).lastArg), [ 'echo' ]), expectedResponse)
 })
@@ -95,4 +94,29 @@ test('send(request) while connection closing', async (t) => {
   t.is(errorSpy.firstCall.args[0], error)
   t.is(errorSpy.firstCall.args[0].action, 'send')
   t.false(dataSpy.called)
+})
+
+test('message error', async (t) => {
+  const socket = new Socket()
+  const connection = socket.createConnection(WritableConnection)
+
+  const validMessage = '{"retcode": 123456, "echo": ""}'
+  const invalidMessage1 = '{"post_type": "test", "test_type": ""}' // event payload
+  const invalidMessage2 = '{"invalid": true}' // unexpected payload
+
+  const errorSpy = spy()
+  connection.on('error', errorSpy)
+
+  socket.recv(validMessage) // invalid since no reponse handler
+  socket.recv(invalidMessage1)
+  socket.recv(invalidMessage2)
+
+  t.true(errorSpy.calledThrice)
+  const [[error1], [error2], [error3]] = errorSpy.args
+  t.true(error1 instanceof UnhandledReponseError)
+  t.true(error2 instanceof MessageError)
+  t.true(error3 instanceof MessageError)
+  t.deepEqual(error1.response, JSON.parse(validMessage))
+  t.is(error2.message, invalidMessage1)
+  t.is(error3.message, invalidMessage2)
 })

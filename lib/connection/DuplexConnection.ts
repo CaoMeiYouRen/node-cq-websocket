@@ -38,8 +38,8 @@ export class DuplexConnection extends Connection {
     options: Partial<WritableConnectionOptions> = {}
   ) {
     super(socket)
-    this._addPayloadHandler((payload) => ReadableConnection.prototype._handlePayload.call(this, payload))
-    this._addPayloadHandler((payload) => WritableConnection.prototype._handlePayload.call(this, payload))
+    this._addPayloadHandler(ReadableConnection.prototype._handlePayload.bind(this))
+    this._addPayloadHandler(WritableConnection.prototype._handlePayload.bind(this))
     this._generateEcho = typeof options.echo === 'number'
       ? () => nanoid(options.echo as number) : (options.echo || this._generateEcho)
   }
@@ -47,6 +47,4 @@ export class DuplexConnection extends Connection {
 
 // implement
 DuplexConnection.prototype.recv = ReadableConnection.prototype.recv
-DuplexConnection.prototype._addMessageHandler = ReadableConnection.prototype._addMessageHandler
-DuplexConnection.prototype._invokeMessageHandlers = ReadableConnection.prototype._invokeMessageHandlers
 DuplexConnection.prototype.send = WritableConnection.prototype.send

@@ -34,11 +34,9 @@ test('close(code, reason)', async (t) => {
 
   setTimeout(() => socket.close(mockedCloseCode, mockedCloseReason), mockedCloseDelay)
 
-  const startedAt = Date.now()
   await connection.close(mockedCloseCode, mockedCloseReason)
   t.true(closeSpy.calledOnce)
   t.true(closeSpy.calledWithExactly(expectedCloseCode, expectedCloseReason))
-  t.true(Date.now() - startedAt >= expectedCloseDelay)
   t.true(connection.closed)
   t.true(connection.closedAt instanceof Date)
   t.is(connection.closeCode, expectedCloseCode)
@@ -71,11 +69,9 @@ test('close({code, reason})', async (t) => {
   const closeSpy = spy()
   connection.on('close', closeSpy)
 
-  const startedAt = Date.now()
   await connection.close({ code: mockedCloseCode, reason: mockedCloseReason })
   t.true(closeSpy.calledOnce)
   t.true(closeSpy.calledWithExactly(expectedCloseCode, expectedCloseReason))
-  t.true(Date.now() - startedAt >= expectedCloseDelay)
   t.true(connection.closed)
   t.true(connection.closedAt instanceof Date)
   t.is(connection.closeCode, expectedCloseCode)
@@ -115,9 +111,9 @@ test('message error', async (t) => {
   const socket = new Socket()
   const connection = socket.createConnection(Connection)
 
-  const invalidMessage1 = '{invalid json}'
-  const invalidMessage2 = '123'
-  const invalidMessage3 = '{"invalid": true}'
+  const invalidMessage1 = '{invalid json}' // invalid json payload
+  const invalidMessage2 = '123' // non-object payload
+  const invalidMessage3 = '{}' // no consumer
 
   const errorSpy = spy()
   connection.on('error', errorSpy)
@@ -131,7 +127,7 @@ test('message error', async (t) => {
   t.true(error1 instanceof MessageError)
   t.true(error2 instanceof MessageError)
   t.true(error3 instanceof MessageError)
-  t.is(error1.data, invalidMessage1)
-  t.is(error2.data, invalidMessage2)
-  t.is(error3.data, invalidMessage3)
+  t.is(error1.message, invalidMessage1)
+  t.is(error2.message, invalidMessage2)
+  t.is(error3.message, invalidMessage3)
 })

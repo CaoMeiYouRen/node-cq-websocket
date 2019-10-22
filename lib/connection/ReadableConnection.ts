@@ -6,7 +6,11 @@ import {
   WebSocketLike
 } from './Connection'
 import { Action, TimeoutError, StateError, AbortError } from '../errors'
-import { main as debug, msg as msgDebug } from '../debug'
+import { main as debug, msg as msgDebug, main } from '../debug'
+
+export interface EventPayload {
+  post_type: string
+}
 
 export interface ReadableConnectionEvents extends ConnectionEvents {
   message (payload: Record<string, any>): void
@@ -47,7 +51,7 @@ export class ReadableConnection extends Connection {
         reject(error)
         return
       }
-      this._addMessageHandler((payload) => {
+      this._messageHandlers.push((payload) => {
         debug('connection#recv() resolved')
         resolve(payload)
       })
@@ -76,25 +80,23 @@ export class ReadableConnection extends Connection {
    * @internal
    */
   public _handlePayload (payload: Record<string, any>): Record<string, any> | undefined {
-    if (!('post_type' in payload) ||
-      !(`${payload.post_type}_type` in payload)) {
+    if (!ReadableConnection.isEventPayload(payload)) {
       return payload
     }
 
     msgDebug('recv event: %O', payload)
 
-    this._invokeMessageHandlers(payload)
-    this.emit('message', payload)
-  }
-
-  private _addMessageHandler (handler: (payload: Record<string, any>) => void): void {
-    this._messageHandlers.push(handler)
-  }
-
-  private _invokeMessageHandlers (payload: Record<string, any>): void {
     for (const handler of this._messageHandlers) {
       handler(payload)
     }
     this._messageHandlers = []
+
+    this.emit('message', payload)
+  }
+
+  public static isEventPayload (payload: any): payload is EventPayload {
+    return typeof payload === 'object' &&
+      typeof payload.post_type === 'string' &&
+      (`${payload.post_type}_type` in payload)
   }
 }

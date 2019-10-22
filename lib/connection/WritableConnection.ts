@@ -3,9 +3,19 @@ import nanoid from 'nanoid'
 
 import { Connection, WebSocketLike } from './Connection'
 import { main as debug, msg as msgDebug } from '../debug'
-import { Action, TimeoutError, AbortError, StateError } from '../errors'
+import {
+  Action,
+  TimeoutError,
+  AbortError,
+  StateError,
+  UnhandledReponseError } from '../errors'
 
 export type EchoGenerator = () => string
+
+export interface ResponsePayload {
+  retcode: number
+  echo: string
+}
 
 export interface WritableConnectionOptions {
   echo: number | EchoGenerator
@@ -20,7 +30,7 @@ export class WritableConnection extends Connection {
     options: Partial<WritableConnectionOptions> = {}
   ) {
     super(socket)
-    this._addPayloadHandler((payload) => this._handlePayload(payload))
+    this._addPayloadHandler((payload: Record<string, any>) => this._handlePayload(payload))
     this._generateEcho = typeof options.echo === 'number'
       ? () => nanoid(options.echo as number) : (options.echo || this._generateEcho)
   }
@@ -42,7 +52,7 @@ export class WritableConnection extends Connection {
         reject(error)
         return
       }
-      this._setResponseHandler(echo, (response) => {
+      this._responseHandlerMap.set(echo, (response) => {
         debug('connection#send() resolved')
         resolve(response)
       })
@@ -80,30 +90,26 @@ export class WritableConnection extends Connection {
    * @internal
    */
   public _handlePayload (payload: Record<string, any>): Record<string, any> | undefined {
-    if (!('retcode' in payload) || typeof payload.echo !== 'string') {
+    if (!WritableConnection.isResponsePayload(payload)) {
       return payload
     }
 
     msgDebug('recv response: %o', payload)
 
     const echo = payload.echo
-    delete payload.echo
-
-    if (!this._invokeResponseHandler(echo, payload)) {
-      return payload
-    }
-  }
-
-  private _setResponseHandler (echo: string, handler: (payload: Record<string, any>) => void): void {
-    this._responseHandlerMap.set(echo, handler)
-  }
-
-  private _invokeResponseHandler (echo: string, payload: Record<string, any>): boolean {
     const handler = this._responseHandlerMap.get(echo)
-    if (handler) {
-      handler(payload)
-      return true
+    if (!handler) {
+      this.emit('error', new UnhandledReponseError(payload))
+      return
     }
-    return false
+    delete payload.echo
+    handler(payload)
+    this._responseHandlerMap.delete(echo)
+  }
+
+  public static isResponsePayload (payload: any): payload is ResponsePayload {
+    return typeof payload === 'object' &&
+      typeof payload.retcode === 'number' &&
+      typeof payload.echo === 'string'
   }
 }

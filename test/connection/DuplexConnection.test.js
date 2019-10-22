@@ -2,7 +2,9 @@ import test from 'ava'
 import { spy } from 'sinon'
 import { omit } from 'lodash'
 
-import { DuplexConnection } from '../../'
+import { DuplexConnection,
+  MessageError,
+  UnhandledReponseError } from '../../'
 
 import { Socket } from '../helpers/socket'
 
@@ -25,10 +27,8 @@ test('send(request)', async (t) => {
   setTimeout(() => socket.ack(mockedResponse), mockedResponseDelay)
 
   const message = { fake: true }
-  const startedAt = Date.now()
   const response = await connection.send(message)
   t.deepEqual(response, expectedResponse)
-  t.true(Date.now() - startedAt >= expectedResponseDelay)
   t.true(dataSpy.calledOnce)
   t.deepEqual(omit(JSON.parse(dataSpy.getCall(0).lastArg), [ 'echo' ]), expectedResponse)
 })
@@ -40,6 +40,7 @@ test('recv()', async (t) => {
   const mockedRecvDelay = 100
   const mockedMessage = {
     post_type: 'test',
+    test_type: '',
     test: true
   }
 
@@ -64,4 +65,27 @@ test('recv()', async (t) => {
   t.true(dataSpy.calledWithExactly(expectedMessageStr))
   t.true(messageSpy.calledOnce)
   t.true(messageSpy.calledWithExactly(expectedMessage))
+})
+
+test('message error', async (t) => {
+  const socket = new Socket()
+  const connection = socket.createConnection(DuplexConnection)
+
+  const validMessage1 = '{"post_type": "test", "test_type": ""}' // event payload
+  const validMessage2 = '{"retcode": 123456, "echo": ""}' // response payload
+  const invalidMessage = '{"invalid": true}' // unexpected payload
+
+  const errorSpy = spy()
+  connection.on('error', errorSpy)
+
+  socket.recv(validMessage1)
+  socket.recv(validMessage2) // invalid since no response handler
+  socket.recv(invalidMessage)
+
+  t.true(errorSpy.calledTwice)
+  const [[error1], [error2]] = errorSpy.args
+  t.true(error1 instanceof UnhandledReponseError)
+  t.true(error2 instanceof MessageError)
+  t.deepEqual(error1.response, JSON.parse(validMessage2))
+  t.is(error2.message, invalidMessage)
 })

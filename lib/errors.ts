@@ -7,7 +7,7 @@ export enum Action {
 }
 
 export class StateError extends CQWebSocketError {
-  public readonly name = 'StateError'
+  public name = 'StateError'
   public constructor (
     public action: Action,
     ...args: any[]
@@ -17,7 +17,7 @@ export class StateError extends CQWebSocketError {
 }
 
 export class AbortError extends CQWebSocketError {
-  public readonly name = 'AbortError'
+  public name = 'AbortError'
   public constructor (
     public action: Action,
     ...args: any[]
@@ -27,9 +27,19 @@ export class AbortError extends CQWebSocketError {
 }
 
 export class MessageError extends CQWebSocketError {
-  public readonly name = 'MessageError'
+  public name = 'MessageError'
   public constructor (
-    public data: string,
+    public message: string,
+    ...args: any[]
+  ) {
+    super(...args)
+  }
+}
+
+export class UnhandledReponseError extends CQWebSocketError {
+  public name = 'UnhandledReponseError'
+  public constructor (
+    public response: Record<string, any>,
     ...args: any[]
   ) {
     super(...args)
@@ -37,7 +47,7 @@ export class MessageError extends CQWebSocketError {
 }
 
 export class TimeoutError extends CQWebSocketError {
-  public readonly name = 'TimeoutError'
+  public name = 'TimeoutError'
   public constructor (
     public action: Action,
     public timeout: number,

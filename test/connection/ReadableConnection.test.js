@@ -4,6 +4,7 @@ import { spy } from 'sinon'
 import { Socket } from '../helpers/socket'
 import {
   ReadableConnection,
+  MessageError,
   TimeoutError,
   StateError,
   AbortError } from '../../'
@@ -103,4 +104,27 @@ test('recv() while connection closing', async (t) => {
   t.true(errorSpy.calledOnce)
   t.true(errorSpy.getCall(0).lastArg instanceof AbortError)
   t.is(errorSpy.getCall(0).lastArg.action, 'recv')
+})
+
+test('message error', async (t) => {
+  const socket = new Socket()
+  const connection = socket.createConnection(ReadableConnection)
+
+  const validMessage = '{"post_type": "test", "test_type": ""}'
+  const invalidMessage1 = '{"retcode": 123456, "echo": ""}' // response payload
+  const invalidMessage2 = '{"invalid": true}' // unexpected payload
+
+  const errorSpy = spy()
+  connection.on('error', errorSpy)
+
+  socket.recv(validMessage)
+  socket.recv(invalidMessage1)
+  socket.recv(invalidMessage2)
+
+  t.true(errorSpy.calledTwice)
+  const [[error1], [error2]] = errorSpy.args
+  t.true(error1 instanceof MessageError)
+  t.true(error2 instanceof MessageError)
+  t.is(error1.message, invalidMessage1)
+  t.is(error2.message, invalidMessage2)
 })
