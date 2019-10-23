@@ -15,7 +15,6 @@ test('close(code, reason)', async (t) => {
   const mockedCloseReason = 'fake closure'
 
   const expectedURL = mockedURL
-  const expectedCloseDelay = mockedCloseDelay
   const expectedCloseCode = mockedCloseCode
   const expectedCloseReason = mockedCloseReason
 
@@ -50,7 +49,6 @@ test('close({code, reason})', async (t) => {
   const mockedCloseReason = 'fake closure'
 
   const expectedURL = mockedURL
-  const expectedCloseDelay = mockedCloseDelay
   const expectedCloseCode = mockedCloseCode
   const expectedCloseReason = mockedCloseReason
 

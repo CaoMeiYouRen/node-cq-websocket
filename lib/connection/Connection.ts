@@ -3,7 +3,8 @@ import { connection as WebSocketConnection } from 'websocket'
 import pTimeout from 'p-timeout'
 
 import { main as debug, msg as msgDebug } from '../debug'
-import { Action, TimeoutError, MessageError } from '../errors'
+import { TimeoutError, MessageError } from '../errors'
+import { Message, RecordMessage } from '../message'
 
 export const CLOSE_REASON_NORMAL = WebSocketConnection.CLOSE_REASON_NORMAL
 export const CLOSE_DESCRIPTION_NORMAL = WebSocketConnection.CLOSE_DESCRIPTIONS[CLOSE_REASON_NORMAL]
@@ -15,7 +16,6 @@ export interface WebSocketLike {
 }
 
 export interface ConnectionEvents {
-  data (msg: string): void
   close (code: number, reason: string): void
   error (err: Error): void
 }
@@ -65,8 +65,14 @@ export abstract class Connection extends EventEmitter {
   }
 
   /* eslint-disable no-dupe-class-members */
-  public close (options?: Partial<CloseOptions>): Promise<{code: number, reason: string}>
-  public close (code?: number, reason?: string, timeout?: number): Promise<{code: number, reason: string}>
+  public close (
+    options?: Partial<CloseOptions>
+  ): Promise<{code: number, reason: string}>
+  public close (
+    code?: number,
+    reason?: string,
+    timeout?: number
+  ): Promise<{code: number, reason: string}>
   public async close (
     arg1?: number | Partial<CloseOptions>,
     arg2?: string,
@@ -111,16 +117,7 @@ export abstract class Connection extends EventEmitter {
       this._socket.close(code, reason)
     })
 
-    let closeResult: { code: number, reason: string }
-    try {
-      closeResult = await pTimeout(closePromise, timeout,
-        new TimeoutError(Action.CLOSE, timeout, 'close timeout'))
-    } catch (e) {
-      this.emit('error', e)
-      throw e
-    }
-
-    return closeResult
+    return pTimeout(closePromise, timeout, new TimeoutError('close timeout'))
   }
 
   public get url (): string {
@@ -151,9 +148,12 @@ export abstract class Connection extends EventEmitter {
    * called by socket implementations to emit messages
    * @internal
    */
-  public handleMessage (msg: string): void {
-    msgDebug('recv data: %O', msg)
-    this.emit('data', msg)
+  public handleMessage (text: string): void {
+    msgDebug('recv data: %O', text)
+
+    const message = new Message(text)
+
+    RecordMessage.from(text)
 
     let payload: Record<string, any>
     try {

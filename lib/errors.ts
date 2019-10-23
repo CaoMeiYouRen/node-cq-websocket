@@ -1,58 +1,47 @@
+import { APIResponse } from './message'
+
 export abstract class CQWebSocketError extends Error { }
 
-export enum Action {
-  SEND = 'send',
-  RECV = 'recv',
-  CLOSE = 'close'
-}
-
 export class StateError extends CQWebSocketError {
-  public name = 'StateError'
-  public constructor (
-    public action: Action,
-    ...args: any[]
-  ) {
-    super(...args)
-  }
+  public readonly name = 'StateError'
 }
 
 export class AbortError extends CQWebSocketError {
-  public name = 'AbortError'
-  public constructor (
-    public action: Action,
-    ...args: any[]
-  ) {
-    super(...args)
-  }
-}
-
-export class MessageError extends CQWebSocketError {
-  public name = 'MessageError'
-  public constructor (
-    public message: string,
-    ...args: any[]
-  ) {
-    super(...args)
-  }
-}
-
-export class UnhandledReponseError extends CQWebSocketError {
-  public name = 'UnhandledReponseError'
-  public constructor (
-    public response: Record<string, any>,
-    ...args: any[]
-  ) {
-    super(...args)
-  }
+  public readonly name = 'AbortError'
 }
 
 export class TimeoutError extends CQWebSocketError {
-  public name = 'TimeoutError'
+  public readonly name = 'TimeoutError'
+}
+
+export abstract class MessageError extends CQWebSocketError {
+  public constructor (public readonly data: string, ...args: any[]) {
+    super(...args)
+  }
+}
+
+export class InvalidMessageError extends MessageError {
+  public readonly name = 'InvalidMessageError'
+}
+
+export class UnexpectedMessageError extends MessageError {
+  public readonly name = 'UnexpectedMessageError'
   public constructor (
-    public action: Action,
-    public timeout: number,
+    public readonly record: Record<string, any>,
+    data: string,
     ...args: any[]
   ) {
-    super(...args)
+    super(data, ...args)
+  }
+}
+
+export class UnhandledReponseError extends MessageError {
+  public readonly name = 'UnhandledReponseError'
+  public constructor (
+    public readonly response: APIResponse,
+    data: string,
+    ...args: any[]
+  ) {
+    super(data, ...args)
   }
 }

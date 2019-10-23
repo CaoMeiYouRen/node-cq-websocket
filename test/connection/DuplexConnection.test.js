@@ -15,7 +15,6 @@ test('send(request)', async (t) => {
     retcode: 0
   }
 
-  const expectedResponseDelay = mockedResponseDelay
   const expectedResponse = omit(mockedResponse, [ 'echo' ])
 
   const socket = new Socket(mockedURL)
