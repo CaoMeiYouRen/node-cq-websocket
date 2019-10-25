@@ -25,25 +25,25 @@ export declare interface Connection {
 }
 
 export class Connection extends EventEmitter {
-  public handleMessage (msg: string | Record<string, null>): void {
+  public handleMessage (msg: string | Record<string, null>): Record<string, null> {
     let payload: Record<string, any>
-    if (typeof event.data === 'string') {
+    if (typeof msg === 'string') {
       try {
-        payload = JSON.parse(event.data)
+        payload = JSON.parse(msg)
       } catch (e) {
-        this.emit('error', new MessageError(event.data, `invalid json: ${e.message}`))
+        this.emit('error', new MessageError(msg, `invalid json: ${e.message}`))
         return
       }
     } else {
-      payload = event.data
+      payload = msg
     }
 
-    if (typeof msg !== 'object') {
-      this.emit('error', new MessageError(payload, 'non-object message'))
+    if (typeof payload !== 'object') {
+      this.emit('error', new MessageError(msg, 'non-object message'))
       return
     }
 
-    event.payload = payload
+    return payload
   }
 
   protected _handleClose () 
