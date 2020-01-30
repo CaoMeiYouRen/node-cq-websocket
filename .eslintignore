@@ -1,0 +1,7 @@
+dist
+test
+build
+node_modules
+*.min.*
+public
+*.*
