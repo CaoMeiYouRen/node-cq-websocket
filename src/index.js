@@ -265,7 +265,7 @@ class CQWebSocket extends $Callable {
                 ))
             }
             break
-          case 'group_ban':{
+          case 'group_ban':
             switch (msgObj.sub_type) {
               case 'ban':
                 this._eventBus.emit('notice.group_ban.ban', msgObj)
@@ -280,7 +280,6 @@ class CQWebSocket extends $Callable {
                 ))
             }
             break
-          }
           case 'group_decrease':
             switch (msgObj.sub_type) {
               case 'leave':
