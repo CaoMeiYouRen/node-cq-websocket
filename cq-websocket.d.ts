@@ -60,6 +60,7 @@ type NoticeEvents = 'notice.group_upload'
   | 'notice.group_increase'
   | 'notice.group_ban.ban'
   | 'notice.group_ban.lift_ban'
+  | 'notice.group_ban'
 
 type RequestEvents = 'request.friend'
   | 'request.group.add'
